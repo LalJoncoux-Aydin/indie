@@ -1,0 +1,27 @@
+cmake_minimum_required(VERSION 3.10)
+project(header)
+
+set(
+    HEADERS
+    EventReceiver.hpp
+    Bomberman.hpp
+    ButtonState.hpp
+    cell.hpp
+    CMakeFiles
+    cmake_install.cmake
+    CMakeLists.txt
+    Help.hpp
+    ICharacter.hpp
+    Intro.hpp
+    IScene.hpp
+    IMusic.hpp
+    indie.hpp
+    Makefile
+    Map.hpp
+    Menu.hpp
+    GameMusic.hpp
+    Settings.hpp
+    template.hpp
+    Vector.hpp
+    Game.hpp
+)

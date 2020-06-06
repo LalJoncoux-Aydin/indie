@@ -1,0 +1,12 @@
+a.out
+*.o
+#*#
+*~
+.vscode*
+vgcore*
+*.gc*
+bomberman
+cmake_install.cmake
+CMakeFiles
+CMakeCache.txt
+.cmake
