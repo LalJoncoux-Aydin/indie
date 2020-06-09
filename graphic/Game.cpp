@@ -51,7 +51,7 @@ scene::ISceneManager* Game::Init_map(scene::ISceneManager* smgr, std::vector<std
 					scene::ISceneNode* temp = _sceneManager->addCubeSceneNode();
                     cubes.push_back(temp);
 					if (_map[i][x].element == DESTRUCTIBLE_BOX)
-                        temp->setMaterialTexture(0, driver->getTexture("./assets/images/metal.jpg"));
+                        temp->setMaterialTexture(0, driver->getTexture("./assets/images/rockwall.jpg"));
                     else if (_map[i][x].element == INDESTRUCTIBLE_BOX)
                         temp->setMaterialTexture(0, driver->getTexture("./assets/images/lale.jpg"));
                     else if (_map[i][x].element == WALL)
@@ -82,7 +82,7 @@ scene::ISceneManager* Game::Init_map(scene::ISceneManager* smgr, std::vector<std
 				_Player2 = player1;
 				if (player1) {
 					player1->setMaterialFlag(irr::video::EMF_LIGHTING, true);
-					player1->setMaterialTexture(0, _driver->getTexture("/assets/model3D/nskinr.jpg"));
+					player1->setMaterialTexture(0, _driver->getTexture("./assets/model3D/nskinr.jpg"));
 					player1->setFrameLoop(208,300);
 					player1->setAnimationSpeed(10);
 					//player1->setScale(irr::core::vector3df(100, 100, 100));
@@ -106,7 +106,7 @@ scene::ISceneManager* Game::Init_map(scene::ISceneManager* smgr, std::vector<std
 				_Player4 = player1;
 				if (player1) {
 					player1->setMaterialFlag(irr::video::EMF_LIGHTING, true);
-					player1->setMaterialTexture(0, _driver->getTexture("./assets/model3D/noir.jpg"));
+					player1->setMaterialTexture(0, _driver->getTexture("./assets/model3D/nskinbl.jpg"));
 					player1->setFrameLoop(208,300);
 					player1->setAnimationSpeed(10);
 					//player1->setScale(irr::core::vector3df(100, 100, 100));

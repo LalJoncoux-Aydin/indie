@@ -23,7 +23,7 @@ Intro::~Intro()
 void Intro::MusicIntro()
 {
     _music.setMusic("./assets/music/Intro.wav");
-    _music.musicsetVolume(30);
+    _music.musicsetVolume(5);
     _music.musicsetLoop(false);
 }
 
@@ -108,10 +108,18 @@ int Intro::getButton()
 
 void Intro::render(void) {
 
-    clock_t start;
-    irr::core::recti *_rect;
+    //static clock_t start;
+    //irr::core::recti *_rect;
+    //clock_t end;
+    long lck = CLOCKS_PER_SEC;
+    static u32 time = _device->getTimer()->getTime();
+    //auto start = std::chrono::high_resolution_clock::now();
+    //irr::ITimer *caca;
+    //caca->start();
+
+    //std::cout << caca->getTime() << std::endl;
     //time_t start;
-    start = 0;
+   // start = 0;
     //_rect[0].operator+=(vector2di(10,0));
 
     //IMeshSceneNode *de = _sceneManager->
@@ -119,6 +127,7 @@ void Intro::render(void) {
   //   sf::Music music;
   //u32 caca = 2;
 
+//std::this_thread::sleep_for(std::chrono::milliseconds(2000));
     
 
 	_driver->beginScene(true, true, video::SColor(0,0,0,0));
@@ -126,54 +135,66 @@ void Intro::render(void) {
     //start = clock();
     //sleep(3);
     //750000
-    start = clock();
+    //start = clock();
+    if (_device->getTimer()->getTime() - time / 1000.f > 3300) {
+    _driver->draw2DImage(_logo, position2d<s32> (675, 0), rect<s32> (0,0,500,500), 0, _empty_color, true);
+    }
 
+    if (_device->getTimer()->getTime() - time / 1000.f > 6300) {
 
-    if (start > 600000) {
     _driver->draw2DImage(_lal, position2d<s32> (150, 100), rect<s32> (0,0,110,147), 0, _empty_color, true);
     }
 
-    if (start > 755000) {
+
+
+
+
+
+    if (_device->getTimer()->getTime() - time / 1000.f > 8000) {
     _driver->draw2DImage(_armand, position2d<s32> (1600, 100), rect<s32> (0,0,110,147), 0, _empty_color, true);
     }
 
-    if (start > 900000) {
+
+
+    if (_device->getTimer()->getTime() - time / 1000.f > 10000) {
     _driver->draw2DImage(_camille, position2d<s32> (150, 450), rect<s32> (0,0,110,147), 0, _empty_color, true);
     }
 
-    if (start > 1050000) {
+
+    if (_device->getTimer()->getTime() - time / 1000.f > 12000) {
     _driver->draw2DImage(_jo, position2d<s32> (1600, 450), rect<s32> (0,0,110,147), 0, _empty_color, true);
     }
 
-    if (start > 1210000) {
+    if (_device->getTimer()->getTime() - time / 1000.f > 14000) {
     _driver->draw2DImage(_louis, position2d<s32> (150, 800), rect<s32> (0,0,110,147), 0, _empty_color, true);
     }
 
-    if (start > 1230000) {
+    if (_device->getTimer()->getTime() - time / 1000.f > 14200) {
     _driver->draw2DImage(_zoe, position2d<s32> (1600, 800), rect<s32> (0,0,110,147), 0, _empty_color, true);
     }
 
-    if (start > 1380000) {
+    if (_device->getTimer()->getTime() - time / 1000.f > 16500) {
     _driver->draw2DImage(_pres, position2d<s32> (665, 500), rect<s32> (0,0,250,104), 0, _empty_color, true);
     }
 
-    if (start > 1400000) {
+    if (_device->getTimer()->getTime() - time / 1000.f > 16700) {
     _driver->draw2DImage(_ent, position2d<s32> (905, 507), rect<s32> (0,0,250,83), 0, _empty_color, true);
     }
 
-    if (start > 1410000) {
+
+    if (_device->getTimer()->getTime() - time / 1000.f > 16800) {
     _driver->draw2DImage(_t, position2d<s32> (1150, 502), rect<s32> (0,0,50,93), 0, _empty_color, true);
     }
-    
-    if (start > 1580000) {
+
+    if (_device->getTimer()->getTime() - time / 1000.f > 18000) {
     _driver->draw2DImage(_pied, position2d<s32> (400, 270), rect<s32> (0,0,150,150), 0, _empty_color, true);
     }
 
-    if (start > 1650000) {
+    if (_device->getTimer()->getTime() - time / 1000.f > 18500) {
     _driver->draw2DImage(_bomb, position2d<s32> (1300, 270), rect<s32> (0,0,150,150), 0, _empty_color, true);
     }
 
-    if (start > 1920000) {
+    if (_device->getTimer()->getTime() - time / 1000.f > 22300) {
     _driver->draw2DImage(_title, position2d<s32> (675, 700), rect<s32> (0,0,500,139), 0, _empty_color, true);
     }
 
@@ -184,9 +205,9 @@ void Intro::render(void) {
     //}
     //system("pause");
     //timer();
-    if (start > 370000) {
-    _driver->draw2DImage(_logo, position2d<s32> (675, 0), rect<s32> (0,0,500,500), 0, _empty_color, true);
-    }
+    
+
+   // end = clock();
 //        music.play();
     //sleep(10);
 
