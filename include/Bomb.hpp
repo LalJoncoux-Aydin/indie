@@ -9,6 +9,7 @@
 #define BOMB_HPP_
 
 #include <Vector.hpp>
+#include <chrono>
 
 class Bomb {
     public:
@@ -17,8 +18,13 @@ class Bomb {
         ~Bomb();
 
         // getters
-        unsigned int getTimeBeforeExplosion() { return 15 - (_lastCheck - _timePlaced); };
+        unsigned int getTimeBeforeExplosion() { return 150 - (_lastCheck - _timePlaced); };
         bool isPlaced() { return _placed; };
+        int getPassedTime();
+        void setPassedTime(std::size_t time) {
+            _time = time;
+        };
+        void timePass();
 
         // setters
         unsigned int getExplosionRadius() { return _explosionRadius; };
@@ -37,6 +43,7 @@ class Bomb {
         unsigned int _timePlaced;
         unsigned int _lastCheck = 0;
         bool _placed = false;
+        std::size_t _time = 0;
 };
 
 #endif /* !BOMB_HPP_ */

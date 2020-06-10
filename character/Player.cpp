@@ -49,7 +49,12 @@ void Player::dropBomb()
 
 bool Player::dropBomb()
 {
+    std::cout << "current bomb camille la plus belle " << _currentBombs.size() << std::endl;
+    
+    std::cout << "maxbomb caca le sang " << _maxBombs << std::endl;
     if (_maxBombs > _currentBombs.size()) {
+
+
   //      Bomb &new_bomb(_bombRadius, _pos);
         _currentBombs.push_back(new Bomb(_bombRadius, _pos));
         std::cout << _currentBombs[0]->getTimeBeforeExplosion() << std::endl;

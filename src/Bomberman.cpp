@@ -97,20 +97,44 @@ void Bomberman::manageGame()
   // CHANGE SCENE
 
   // GET KEYS
-  int direction_1 = getKeyPlayer1();
-  int direction_2 = getKeyPlayer2();
+  direction_1 = getKeyPlayer1();
+  direction_2 = getKeyPlayer2();
 
   if (direction_1 == 5) {
-    indie_player[0]->dropBomb();
-    std::cout << "bombberman" << std::endl;
- } else if (direction_1 != 0) {
+    if (indie_player[0]->getBombs().empty()) {
+      indie_player[0]->dropBomb();
+      direction_1_posed = true;
+    }
+  } else if (direction_1 != 0) {
       indie_player[0]->move(orientation(direction_1));
   }
 
   if (direction_2 == 5) {
-    indie_player[1]->dropBomb();
+    if (indie_player[1]->getBombs().empty())
+      indie_player[1]->dropBomb();
   } else if (direction_2 != 0)
     indie_player[1]->move(orientation(direction_2));
+
+    // If there is a bomb
+    // Get le temps de la bombe player 1
+  if (!indie_player[0]->getBombs().empty()) {
+      //  int passed_time = 0;
+      //   std::cout << "enter function 1" << std::endl;
+      //   while (passed_time < 8999) {
+      //     passed_time = indie_player[0]->getBombs()[0]->getPassedTime();
+      //   }
+      //   std::cout << "quit function" << std::endl;
+    indie_player[0]->getBombs()[0]->timePass();
+   }
+
+    // if (direction_2 == 5 || (!indie_player[1]->getBombs().empty() && indie_player[1]->getBombs()[0]->isPlaced())) {
+    //   int passed_time = 0;
+    //   std::cout << "enter function 2" << std::endl;
+    //   while (passed_time < 8999) {
+    //     passed_time = indie_player[1]->getBombs()[0]->getPassedTime();
+    //   }
+    //   std::cout << "quit function" << std::endl;
+    // }
 
   // DISPLAY LA MAP
   _scenesStack.top()->updateMap(indie_map.update(indie_player));
@@ -170,14 +194,14 @@ void Bomberman::scenesHandler()
 		  _oldScene = _scenesStack.top();
 		}
 
-        if (run_menu == true) {
-            manageMenu();
-        } else {
-            if (run_game == false)
-               initGame();
-            manageGame();
-        }
-	    _scenesStack.top()->render();
+    if (run_menu == true) {
+      manageMenu();
+    } else {
+      if (run_game == false)
+        initGame();
+      manageGame();
+    }
+	  _scenesStack.top()->render();
 	}
 }
 

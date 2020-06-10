@@ -25,11 +25,11 @@ scene::ISceneManager* Game::Init_map(scene::ISceneManager* smgr, std::vector<std
 	int tmp = 0;
 	int tmp1 = 0;
 
-	IMeshSceneNode *bombe = _sceneManager->addSphereSceneNode(0.5);
+	IMeshSceneNode *bombe = _sceneManager->addSphereSceneNode(0.8);
 	_bombe = bombe;
 	_bombe->setVisible(false);
 
-	IMeshSceneNode *bombe1 = _sceneManager->addSphereSceneNode(0.5);
+	IMeshSceneNode *bombe1 = _sceneManager->addSphereSceneNode(0.8);
 	_bombe1 = bombe1;
 	_bombe1->setVisible(false);
 
@@ -140,6 +140,14 @@ scene::ISceneManager* Game::delete_cube(scene::ISceneManager* smgr, std::vector<
 		}
 	}
 }*/
+
+void Game::waitBomb()
+{
+	static u32 time = _device->getTimer()->getTime();
+	std::cout << "time_start : "<< time << std::endl;
+	while (time > 15000); 
+	std::cout << "time_end : " << time << std::endl;
+}
 void Game::MusicGame()
 {
     _music.setMusic("./assets/music/Game.wav");

@@ -28,6 +28,19 @@ Bomb::~Bomb()
 {
 }
 
+void Bomb::timePass()
+{
+    std::chrono::high_resolution_clock::time_point _timepoint = std::chrono::high_resolution_clock::now();
+    std::chrono::milliseconds ms = std::chrono::duration_cast<std::chrono::milliseconds>(_timepoint.time_since_epoch());
+    std::chrono::seconds s = std::chrono::duration_cast<std::chrono::seconds>(ms);
+    _time = ms.count() % 10000;
+}
+
+int Bomb::getPassedTime()
+{
+    return _time;
+}
+
 bool Bomb::checkTimerChange()
 {
     unsigned int tmp = time(NULL);

@@ -25,6 +25,7 @@ public:
 	virtual void 			render() = 0;
 	virtual int 			getButton() = 0;
 	virtual void 			updateMap(std::vector<std::vector<cell_t>> map) = 0;
+	virtual void 			waitBomb() = 0;
 
 	virtual IrrlichtDevice 	*getDevice(void) = 0;
 	virtual ISceneManager	*getSceneManager(void) = 0;

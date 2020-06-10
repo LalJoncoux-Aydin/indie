@@ -67,7 +67,9 @@ class Perso: public ICharacter
         std::vector<Bomb*> getBombs() {
             return _currentBombs;
         };
-        void deleteBomb(int index) {};
+        void deleteBomb(int index) {
+            _currentBombs.erase(_currentBombs.begin() + (index - 1));
+        };
 
         ~Perso() {};
 

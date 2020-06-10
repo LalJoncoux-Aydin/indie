@@ -76,7 +76,36 @@ void Intro::init() {
     _pied = _driver->getTexture("./assets/images/pied.png");
     _bomb = _driver->getTexture("./assets/images/bomb.png");
     _title = _driver->getTexture("./assets/images/logobom.png");
-    
+
+
+       /*scene::IParticleSystemSceneNode* ps =
+        _sceneManager->addParticleSystemSceneNode(false);
+
+    scene::IParticleEmitter* em = ps->createBoxEmitter(
+        core::aabbox3d<f32>(-7,0,-7,7,1,7), // taille de l'émetteur
+        core::vector3df(0.0f,0.06f,0.0f),   // position initiale
+        80,100,                             // taux d'émission
+        video::SColor(0,255,255,255),       // la couleur la plus sombre
+        video::SColor(0,255,255,255),       // la couleur la plus lumineuse
+        800,2000,0,                         // minimum et maximum âge, angle
+        core::dimension2df(10.f,10.f),         // taille minimum
+        core::dimension2df(20.f,20.f));        // taille maximum
+
+    ps->setEmitter(em); // Ceci prend l'émetteur
+    em->drop(); // Donc on peut le jeter sans qu'il soit supprimé.
+
+    scene::IParticleAffector* paf = ps->createFadeOutParticleAffector();
+
+    ps->addAffector(paf); // de même pour l'affecteur
+    paf->drop();
+
+    ps->setPosition(core::vector3df(-70,60,40));
+    ps->setScale(core::vector3df(2,2,2));
+    ps->setMaterialFlag(video::EMF_LIGHTING, false);
+    ps->setMaterialFlag(video::EMF_ZWRITE_ENABLE, false);
+    ps->setMaterialTexture(0, _driver->getTexture("./assets/images/fire.bmp"));
+    ps->setMaterialType(video::EMT_TRANSPARENT_ADD_COLOR);
+    */
     
    // _logo->
 
@@ -133,6 +162,7 @@ void Intro::render(void) {
 	_driver->beginScene(true, true, video::SColor(0,0,0,0));
    // sleep(1);
     //start = clock();
+
     //sleep(3);
     //750000
     //start = clock();

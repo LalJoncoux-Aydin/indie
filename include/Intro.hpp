@@ -22,6 +22,7 @@ class Intro : public IScene {
          return smgr;
     };
     int getButton();
+    void waitBomb(){};
 
     IrrlichtDevice *getDevice(void) {
         return (_device);

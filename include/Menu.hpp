@@ -30,6 +30,8 @@ public:
     };
     int getButton();
 
+    void waitBomb(){};
+
     IrrlichtDevice *getDevice(void) {
         return (_device);
     }

@@ -55,6 +55,9 @@ class Bomberman {
     MyEventReceiver1 *_eventReceiver;
 
     int direction;
+    int direction_1 = 0;
+    int direction_2 = 0;
+    bool direction_1_posed = false;
 };
 
 #endif /* !BOMBERMAN_HPP_ */

@@ -27,6 +27,8 @@ public:
 	ISceneManager* draw_map(scene::ISceneManager* smgr, std::vector<std::vector<cell_t>> _map, int _size, video::IVideoDriver* driver);
     ISceneManager* Init_map(scene::ISceneManager* smgr, std::vector<std::vector<cell_t>> _map, int _size, video::IVideoDriver* driver);
     void MusicGame();
+
+    void waitBomb();
     int getButton() {
 		return 0;
 	}

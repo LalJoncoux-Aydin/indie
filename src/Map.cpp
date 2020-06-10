@@ -181,18 +181,27 @@ std::vector<std::vector<cell_t>> Map::update(std::vector<ICharacter *> character
             if (bomb->isPlaced() == false) {continue;}
             if (bomb->checkTimerChange() == true) {continue;}
             auto posBomb = bomb->getPos();
-            if (_map[posBomb.x][posBomb.y].bombState == EXPLOSION5) {
+            std::cout << "passed time explode NORMAL = " << bomb->getPassedTime() << std::endl;
+            if (_map[posBomb.x][posBomb.y].bombState == EXPLOSION5 && bomb->getPassedTime() > 8999) {
                 _map[posBomb.x][posBomb.y].bombState = EXPLOSION4;
-            }
-            else if (_map[posBomb.x][posBomb.y].bombState == EXPLOSION4)
+                std::cout << "passed time explode 4 = " << bomb->getPassedTime() << std::endl;
+                bomb->setPassedTime(0);
+            } else if (_map[posBomb.x][posBomb.y].bombState == EXPLOSION4 && bomb->getPassedTime() > 8999) {
                 _map[posBomb.x][posBomb.y].bombState = EXPLOSION3;
-            else if (_map[posBomb.x][posBomb.y].bombState == EXPLOSION3)
+                std::cout << "passed time explode 3 = " << bomb->getPassedTime() << std::endl;
+                bomb->setPassedTime(0);
+            } else if (_map[posBomb.x][posBomb.y].bombState == EXPLOSION3 && bomb->getPassedTime() > 8999) {
                 _map[posBomb.x][posBomb.y].bombState = EXPLOSION2;
-            else if (_map[posBomb.x][posBomb.y].bombState == EXPLOSION2)
+                std::cout << "passed time explode 2 = " << bomb->getPassedTime() << std::endl;
+                bomb->setPassedTime(0);
+            } else if (_map[posBomb.x][posBomb.y].bombState == EXPLOSION2 && bomb->getPassedTime() > 8999) {
                 _map[posBomb.x][posBomb.y].bombState = EXPLOSION1;
-            else if (_map[posBomb.x][posBomb.y].bombState == EXPLOSION1) {
+                std::cout << "passed time explode 1 = " << bomb->getPassedTime() << std::endl;
+                bomb->setPassedTime(0);
+            } else if (_map[posBomb.x][posBomb.y].bombState == EXPLOSION1 && bomb->getPassedTime() > 8999) {
                 _map[posBomb.x][posBomb.y].bombState == NO;
                 dropBomb(posBomb.x, posBomb.y, bomb->getExplosionRadius(), characters);
+                std::cout << "deleted !!" << std::endl;
                 character->deleteBomb(i);
             } else
                 continue;
