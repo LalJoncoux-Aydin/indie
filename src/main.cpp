@@ -1,9 +1,7 @@
 #include "indie.hpp"
 
 int main(int ac, char **argv)
-{
-
-        
+{  
     try {
         indie();
     } catch (std::string error) {

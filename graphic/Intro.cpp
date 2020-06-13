@@ -36,7 +36,7 @@ void Intro::InitStartButton()
   	New->setUseAlphaChannel(true);
   	New->setDrawBorder(false);
 	New->setImage(textuNew);
-    
+
 }
 
 void Intro::hoverIntroButton()
@@ -106,10 +106,10 @@ void Intro::init() {
     ps->setMaterialTexture(0, _driver->getTexture("./assets/images/fire.bmp"));
     ps->setMaterialType(video::EMT_TRANSPARENT_ADD_COLOR);
     */
-    
+
    // _logo->
 
-    
+
 
 
     //displayImage();
@@ -130,7 +130,7 @@ void Intro::init() {
 
 int Intro::getButton()
 {
-    if (_eventReceiver->getIntroStatus() == true) 
+    if (_eventReceiver->getIntroStatus() == true)
         return 1;
     return 0;
 }
@@ -157,7 +157,7 @@ void Intro::render(void) {
   //u32 caca = 2;
 
 //std::this_thread::sleep_for(std::chrono::milliseconds(2000));
-    
+
 
 	_driver->beginScene(true, true, video::SColor(0,0,0,0));
    // sleep(1);
@@ -235,7 +235,7 @@ void Intro::render(void) {
     //}
     //system("pause");
     //timer();
-    
+
 
    // end = clock();
 //        music.play();

@@ -35,7 +35,7 @@ scene::ISceneManager* Game::Init_map(scene::ISceneManager* smgr, std::vector<std
 
             // Walls
             if (_map[y][x].element == INDESTRUCTIBLE_BOX || _map[y][x].element == DESTRUCTIBLE_BOX || _map[y][x].element == WALL) {
-				
+
 					scene::ISceneNode* node = 0;
 
 					node = _sceneManager->addLightSceneNode(0, core::vector3df(10,3,-7), video::SColorf(1.0f,1.0f,1.0f,1.0f), 4.0f);
@@ -53,10 +53,10 @@ scene::ISceneManager* Game::Init_map(scene::ISceneManager* smgr, std::vector<std
                     temp->setPosition(irr::core::vector3df((x * 2) - 16,-((y * 2) - 16),1.5));//(doite/gauche, haut/bas, profondeur)
 					temp->setScale(irr::core::vector3df(0.2, 0.2, 0.2));
                     temp->setRotation(irr::core::vector3df(0, 0, 0));
-			
+
 			}
             // PLAYER
-			
+
 			else if (_map[y][x].player == PLAYER1) {
 				_Player1 = _sceneManager->addAnimatedMeshSceneNode(_sceneManager->getMesh("./assets/model3D/ninja.b3d"), 0, -1, irr::core::vector3df(temp_x, temp_y, 2), irr::core::vector3df(480,180,180), irr::core::vector3df(0.5,0.5,0.5));
 				if (_Player1) {
@@ -153,7 +153,7 @@ void Game::updateMap(std::vector<std::vector<cell_t>> _map)
 			//scene::ISceneNode* temp = _sceneManager->addCubeSceneNode();
 
             // CAMILLE CODE ICI
-        	
+
 
            // Dead or life
             if (_map[y][x].isDeadBody == true) {

@@ -1,6 +1,6 @@
 #include "Settings.hpp"
 
-Settings::Settings(IrrlichtDevice *device, sf::Music *sound, std::stack<IScene *> *stack) { 
+Settings::Settings(IrrlichtDevice *device, sf::Music *sound, std::stack<IScene *> *stack) {
 	this->device = device;
     this->soundEngine = sound;
     this->sceneManager = this->device->getSceneManager();
@@ -10,7 +10,7 @@ Settings::Settings(IrrlichtDevice *device, sf::Music *sound, std::stack<IScene *
     this->stop = false;
 }
 
-Settings::~Settings() 
+Settings::~Settings()
 {
 }
 

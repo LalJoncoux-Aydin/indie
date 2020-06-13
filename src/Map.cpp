@@ -131,7 +131,7 @@ void Map::clean(PlayerNb p)
     }
 }
 
-void Map::initPlayer(std::vector<ICharacter *> characters)
+void Map::initPlayer(std::vector<std::shared_ptr<ICharacter>> characters)
 {
     int counter = 0;
     for (auto &character : characters) {
@@ -152,7 +152,7 @@ void Map::initPlayer(std::vector<ICharacter *> characters)
     }
 }
 
-std::vector<std::vector<cell_t>> Map::update(std::vector<ICharacter *> characters)
+std::vector<std::vector<cell_t>> Map::update(std::vector<std::shared_ptr<ICharacter>> characters)
 {
     // FILL WALLS
     for (int i = 0 ; i <= _size ; ++i) {

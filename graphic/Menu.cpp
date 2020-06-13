@@ -3,8 +3,8 @@
 #include <unistd.h>
 #include <thread>
 
-Menu::Menu(IrrlichtDevice *device, std::stack<IScene *> *stack) { 
-   
+Menu::Menu(IrrlichtDevice *device, std::stack<IScene *> *stack) {
+
 
 
 	_device = device;
@@ -38,7 +38,7 @@ void Menu::InitNewButton()
   	New->setUseAlphaChannel(true);
   	New->setDrawBorder(false);
 	New->setImage(textuNew);
-    
+
 }
 
 void Menu::hoverPlayButton()
@@ -116,7 +116,7 @@ void Menu::init() {
 
     /*if (music_loop == NULL)
         this->music_loop = this->soundEngine->play("", true, false, true);
-*/  
+*/
     InitNewButton();
     InitPlayButton();
 
@@ -143,12 +143,12 @@ void Menu::init() {
         throw std::string(strerror(ENOMEM));
 }
 
-int Menu::getButton() {    
+int Menu::getButton() {
     if (_eventReceiver->getGameStatus() == true)
         return 2;
     if (_eventReceiver->getOptionStatus() == true)
         return 3;
-    
+
     if (_eventReceiver->getStartStatus() == true)
         return 4;
     return 0;
@@ -159,7 +159,7 @@ void Menu::render(void) {
 
   //   sf::Music music;
 
-    
+
 
 	_driver->beginScene(true, true, video::SColor(0,255,255,255));
    // sleep(1);

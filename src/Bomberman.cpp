@@ -29,23 +29,23 @@ void Bomberman::endGame()
 
 void Bomberman::initGame()
 {
-    Player *player1 = new Player(Vector<unsigned int>(15,1), false);
+    std::shared_ptr<Player> player1 = std::make_shared<Player>(Vector<unsigned int>(15,1), false);
     indie_player.push_back(player1);
     _eventReceiver = new MyEventReceiver1;
     _device->setEventReceiver(_eventReceiver);
 
     if (multi_player == true) {
-        Player *player2 = new Player(Vector<unsigned int>(1,1), false);
+        std::shared_ptr<Player> player2 = std::make_shared<Player>(Vector<unsigned int>(1,1), false);
         indie_player.push_back(player2);
     } else {
-        IA *player2 = new IA(Vector<unsigned int>(1,1), false);
+        std::shared_ptr<IA> player2 = std::make_shared<IA>(Vector<unsigned int>(1,1), false);
         indie_player.push_back(player2);
     }
 
-    IA *player3 = new IA(Vector<unsigned int>(1,15), false);
+    std::shared_ptr<IA> player3 = std::make_shared<IA>(Vector<unsigned int>(1,15), false);
     indie_player.push_back(player3);
 
-    IA *player4 = new IA(Vector<unsigned int>(15,15), false);
+    std::shared_ptr<IA> player4 = std::make_shared<IA>(Vector<unsigned int>(15,15), false);
     indie_player.push_back(player4);
 
     indie_map.initPlayer(indie_player);

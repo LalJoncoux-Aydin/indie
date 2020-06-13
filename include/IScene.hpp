@@ -6,6 +6,7 @@
 #include <SFML/Audio.hpp>
 #include <stack>
 #include "cell.hpp"
+#include <memory>
 
 using namespace irr;
 using namespace core;

@@ -12,8 +12,8 @@ Help::Help(IrrlichtDevice *device, sf::Music *sound, std::stack<IScene *> *stack
     //_pause.stopMusic();
 }
 
-Help::~Help() 
-{ 
+Help::~Help()
+{
 }
 
 void Help::InitButtonBack()
@@ -46,7 +46,7 @@ void Help::init() {
 
     this->sceneManager->clear();
     this->guiEnv->clear();
-    
+
 
 
     background = driver->getTexture("./assets/images/window.png");

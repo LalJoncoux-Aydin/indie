@@ -21,11 +21,11 @@ class Map {
         ~Map();
 
         void dump();
-        void initPlayer(std::vector<ICharacter *> characters);
+        void initPlayer(std::vector<std::shared_ptr<ICharacter>> characters);
         std::vector<int> dropBomb(int xPos, int yPos, std::shared_ptr<Bomb> bomb);
 
         std::vector<std::vector<cell_t>> getMap() noexcept {return _map;}
-        std::vector<std::vector<cell_t>> update(std::vector<ICharacter *> character);
+        std::vector<std::vector<cell_t>> update(std::vector<std::shared_ptr<ICharacter>> character);
 
         void setMap(std::vector<std::vector<cell_t>> new_map) {
             _map = new_map;

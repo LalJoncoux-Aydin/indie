@@ -97,7 +97,7 @@ class SaveLoad
             return (times);
         };
 
-        void getPlayer(pt::ptree *iroot, std::string key, ICharacter *new_player)
+        void getPlayer(pt::ptree *iroot, std::string key, std::shared_ptr<ICharacter> new_player)
         {
             unsigned int _posx = 0;
             unsigned int _posy = 0;
@@ -154,7 +154,7 @@ class SaveLoad
             return (0);
         };
 
-        std::vector<std::pair<std::string, std::string>> *characterPrep(ICharacter *character)
+        std::vector<std::pair<std::string, std::string>> *characterPrep(std::shared_ptr<ICharacter> character)
         {
             std::vector<std::pair<std::string, std::string>> *player = new std::vector<std::pair<std::string, std::string>>();
 

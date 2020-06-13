@@ -51,7 +51,7 @@ class Bomberman {
     Map indie_map = Map(16);
     SaveLoad indie_save = SaveLoad();
 
-    std::vector<ICharacter *> indie_player;
+    std::vector<std::shared_ptr<ICharacter>> indie_player;
     std::stack<IScene *> _scenesStack;
 
     bool multi_player = false;
