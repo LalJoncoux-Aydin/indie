@@ -47,8 +47,9 @@ Map::Map(int size, std::vector<std::vector<cell_t>> map)
     _map = map;
 }
 
-int Map::dropBomb(int xPos, int yPos, std::shared_ptr<Bomb> bomb)
+std::vector<int> Map::dropBomb(int xPos, int yPos, std::shared_ptr<Bomb> bomb)
 {
+    std::vector<int> result;
     unsigned int bomb_rad = bomb->getExplosionRadius();
     for (int i = 1; i != bomb_rad + 1 && xPos - i >= 0 && xPos + i <= 16 && yPos - i >= 0 && yPos + i <= 16; i++) {
         if (_map[xPos - i][yPos].element == DESTRUCTIBLE_BOX) {
@@ -57,13 +58,13 @@ int Map::dropBomb(int xPos, int yPos, std::shared_ptr<Bomb> bomb)
             _map[xPos - i][yPos].element = BURNING;
         } else if (!(_map[xPos - i][yPos].player == NO_PLAYER)) {
             if (_map[xPos - i][yPos].player == PLAYER1)
-                return 1;
+                result.push_back(1);
             if (_map[xPos - i][yPos].player == PLAYER2)
-                return 2;
+                result.push_back(2);
             if (_map[xPos - i][yPos].player == PLAYER3)
-                return 3;
+                result.push_back(3);
             if (_map[xPos - i][yPos].player == PLAYER4)
-                return 4;
+                result.push_back(4);
         }
 
         if (_map[xPos + i][yPos].element == DESTRUCTIBLE_BOX) {
@@ -72,13 +73,13 @@ int Map::dropBomb(int xPos, int yPos, std::shared_ptr<Bomb> bomb)
             _map[xPos + i][yPos].element = BURNING;
         } else if (!(_map[xPos + i][yPos].player == NO_PLAYER)) {
             if (_map[xPos + i][yPos].player == PLAYER1)
-                return 1;
+                result.push_back(1);
             if (_map[xPos + i][yPos].player == PLAYER2)
-                return 2;
+                result.push_back(2);
             if (_map[xPos + i][yPos].player == PLAYER3)
-                return 3;
+                result.push_back(3);
             if (_map[xPos + i][yPos].player == PLAYER4)
-                return 4;
+                result.push_back(4);
         }
 
         if (_map[xPos][yPos - i].element == DESTRUCTIBLE_BOX) {
@@ -87,13 +88,13 @@ int Map::dropBomb(int xPos, int yPos, std::shared_ptr<Bomb> bomb)
             _map[xPos][yPos - i].element = BURNING;
         } else if (!(_map[xPos][yPos - i].player == NO_PLAYER)) {
             if (_map[xPos][yPos - i].player == PLAYER1)
-                return 1;
+                result.push_back(1);
             if (_map[xPos][yPos - i].player == PLAYER2)
-                return 2;
+                result.push_back(2);
             if (_map[xPos][yPos - i].player == PLAYER3)
-                return 3;
+                result.push_back(3);
             if (_map[xPos][yPos - i].player == PLAYER4)
-                return 4;
+                result.push_back(4);
         }
 
         if (_map[xPos][yPos + i].element == DESTRUCTIBLE_BOX) {
@@ -102,16 +103,16 @@ int Map::dropBomb(int xPos, int yPos, std::shared_ptr<Bomb> bomb)
             _map[xPos][yPos + i].element = BURNING;
         } else if (!(_map[xPos][yPos + i].player == NO_PLAYER)) {
             if (_map[xPos][yPos + i].player == PLAYER1)
-                return 1;
+                result.push_back(1);
             if (_map[xPos][yPos + i].player == PLAYER2)
-                return 2;
+                result.push_back(2);
             if (_map[xPos][yPos + i].player == PLAYER3)
-                return 3;
+                result.push_back(3);
             if (_map[xPos][yPos + i].player == PLAYER4)
-                return 4;
+                result.push_back(4);
         }
     }
-    return 0;
+    return result;
 }
 
 void Map::clean(PlayerNb p)
@@ -159,6 +160,8 @@ std::vector<std::vector<cell_t>> Map::update(std::vector<ICharacter *> character
                 _map[i][x].player = NO_PLAYER;
                 _map[i][x].isDeadBody = false;
             }
+            if (_map[i][x].bombState == HAS_EXPLODED)
+                _map[i][x].bombState = NO;
         }
     }
 
@@ -224,12 +227,16 @@ std::vector<std::vector<cell_t>> Map::update(std::vector<ICharacter *> character
                 _map[posBomb.x][posBomb.y].bombState = EXPLOSION1;
                 bomb->setPassedTime(0);
             } else if (_map[posBomb.x][posBomb.y].bombState == EXPLOSION1 && _diff > 500) {
-                _map[posBomb.x][posBomb.y].bombState = NO;
-                int player_dead = dropBomb(posBomb.x, posBomb.y, bomb);
-                if (player_dead != 0) {
-                    characters[player_dead - 1]->die();
-                    auto dead_pos = characters[player_dead - 1]->getPos();
-                    _map[dead_pos.x][dead_pos.y].isDeadBody = true;
+                _map[posBomb.x][posBomb.y].bombState = HAS_EXPLODED;
+                std::vector<int> player_dead = dropBomb(posBomb.x, posBomb.y, bomb);
+                if (!player_dead.empty()) {
+                    for (int a = 0; player_dead[a]; a++) {
+                        if (player_dead[a] != 0) {
+                            characters[player_dead[a] - 1]->die();
+                            auto dead_pos = characters[player_dead[a] - 1]->getPos();
+                            _map[dead_pos.x][dead_pos.y].isDeadBody = true;
+                        }
+                    }
                 }
                 bomb->setPlace(false);
             }

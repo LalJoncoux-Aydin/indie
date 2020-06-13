@@ -10,6 +10,7 @@
 
 #include <vector>
 #include <iostream>
+#include <iterator>
 #include "ICharacter.hpp"
 
 class Map {
@@ -21,7 +22,7 @@ class Map {
 
         void dump();
         void initPlayer(std::vector<ICharacter *> characters);
-        int dropBomb(int xPos, int yPos, std::shared_ptr<Bomb> bomb);
+        std::vector<int> dropBomb(int xPos, int yPos, std::shared_ptr<Bomb> bomb);
 
         std::vector<std::vector<cell_t>> getMap() noexcept {return _map;}
         std::vector<std::vector<cell_t>> update(std::vector<ICharacter *> character);

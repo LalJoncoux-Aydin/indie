@@ -38,6 +38,7 @@ enum mapBomb {
     EXPLOSION3 = 3,
     EXPLOSION4 = 4,
     EXPLOSION5 = 5,
+    HAS_EXPLODED = 6,
 };
 
 enum decor {

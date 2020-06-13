@@ -90,6 +90,7 @@ private:
     IAnimatedMeshSceneNode *_Player4;
     IMeshSceneNode *_bombe;
     IMeshSceneNode *_bombe1;
+    std::vector<scene::ISceneNode *> list_bomb;
     GameMusic _music;
     std::vector<scene::ISceneNode *> cubes;
 
