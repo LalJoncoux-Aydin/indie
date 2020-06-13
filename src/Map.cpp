@@ -54,6 +54,7 @@ std::vector<int> Map::dropBomb(int xPos, int yPos, std::shared_ptr<Bomb> bomb)
     for (int i = 1; i != bomb_rad + 1 && xPos - i >= 0 && xPos + i <= 16 && yPos - i >= 0 && yPos + i <= 16; i++) {
         if (_map[xPos - i][yPos].element == DESTRUCTIBLE_BOX) {
             _map[xPos - i][yPos].element = BROKEN_BOX;
+            return result;
         } else if (!(_map[xPos - i][yPos].element == WALL) && !(_map[xPos - i][yPos].element == INDESTRUCTIBLE_BOX) && _map[xPos - i][yPos].player == NO_PLAYER) {
             _map[xPos - i][yPos].element = BURNING;
         } else if (!(_map[xPos - i][yPos].player == NO_PLAYER)) {
