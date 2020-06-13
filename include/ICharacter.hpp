@@ -28,6 +28,11 @@ class ICharacter
         virtual std::shared_ptr<Bomb> getBombs() = 0;
         virtual unsigned int getBombRadius() = 0;
         virtual unsigned int getSpeed() = 0;
+        virtual void setIsIa(bool status) = 0;
+        virtual void setPos(Vector<unsigned int> new_pos) = 0;
+        virtual void setIsDead(bool status) = 0;
+        virtual void setBombRadius(unsigned int value) = 0;
+        virtual void setSpeed(unsigned int value) = 0;
 };
 
 // ENFANT
@@ -56,6 +61,22 @@ class Perso: public ICharacter
         void goToPrevPos() {
             _pos = _prevPos;
         };
+        void setIsIa(bool status) {
+            _isIa = status;
+        };
+        void setPos(Vector<unsigned int> new_pos) {
+            _pos = new_pos;
+            _prevPos = new_pos;
+        };
+        void setIsDead(bool status) {
+            _isDead = status;
+        };
+        void setBombRadius(unsigned int value) {
+            _bombRadius = value;
+        };
+        void setSpeed(unsigned int value) {
+            _speed = value;
+        };
 
         void powerUp(PowerUp power){};
         void move(orientation face){};
@@ -64,7 +85,7 @@ class Perso: public ICharacter
         ~Perso() {};
 
         bool _isIa;
-         Vector<unsigned int> _pos;
+        Vector<unsigned int> _pos;
         bool _isDead = false;
         Vector<unsigned int> _prevPos;
         std::shared_ptr<Bomb> _currentBombs;

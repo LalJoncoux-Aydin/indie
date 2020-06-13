@@ -19,6 +19,7 @@
 #include "cell.hpp"
 #include "Intro.hpp"
 #include "Win.hpp"
+#include "Loose.hpp"
 
 #include "ICharacter.hpp"
 #include "Bomb.hpp"
@@ -42,6 +43,7 @@ class Bomberman {
     int getKeyPlayer1();
     int getKeyPlayer2();
 
+    void readJson(std::string file_name);
     void dumpJson(std::string file_name);
 
     ~Bomberman();

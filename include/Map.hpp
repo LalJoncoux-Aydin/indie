@@ -27,6 +27,10 @@ class Map {
         std::vector<std::vector<cell_t>> getMap() noexcept {return _map;}
         std::vector<std::vector<cell_t>> update(std::vector<ICharacter *> character);
 
+        void setMap(std::vector<std::vector<cell_t>> new_map) {
+            _map = new_map;
+        }
+
     protected:
     private:
         void clean(PlayerNb p);

@@ -25,7 +25,7 @@ void Settings::InitPlayerButton()
 
 void Settings::InitIAButton()
 {
-    IGUIButton *IA = guiEnv->addButton(rect<s32>(820,529,1050,670), 0, GUI_ID_START_BUTTON);
+    IGUIButton *IA = guiEnv->addButton(rect<s32>(820,529,1050,670), 0, GUI_ID_MULTI_BUTTON);
     video::ITexture *textuIA = driver->getTexture("./assets/images/multi.png");
   	IA->setUseAlphaChannel(true);
   	IA->setDrawBorder(false);

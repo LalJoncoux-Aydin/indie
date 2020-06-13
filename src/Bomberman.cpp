@@ -14,10 +14,17 @@ Bomberman::Bomberman()
 void Bomberman::endGame()
 {
     std::cout << "END GAME !" << std::endl;
-    Win *_win = new Win(_device, &_scenesStack);
-    _scenesStack.push(_win);
-    _scenesStack.top()->init();
-    _oldScene = _scenesStack.top();
+    if (win_game == 1 || win_game == 2) {
+        Win *_win = new Win(_device, &_scenesStack);
+        _scenesStack.push(_win);
+        _scenesStack.top()->init();
+        _oldScene = _scenesStack.top();
+    } else if (win_game == 3) {
+        Loose *_loose = new Loose(_device, &_scenesStack);
+        _scenesStack.push(_loose);
+        _scenesStack.top()->init();
+        _oldScene = _scenesStack.top();
+    }
 }
 
 void Bomberman::initGame()
@@ -163,11 +170,11 @@ void Bomberman::manageMenu()
         _oldScene = _scenesStack.top();
         run_menu = false;
         run_game = true;
-        initGame();
         if (selection == 4)
           multi_player = false;
         if (selection == 5)
           multi_player = true;
+        initGame();
     }
 }
 
@@ -204,6 +211,20 @@ void Bomberman::clear()
 		delete _scenesStack.top();
 		_scenesStack.pop();
 	}
+}
+
+void Bomberman::readJson(std::string file_name)
+{
+    pt::ptree iroot;
+    pt::read_json(file_name, iroot);
+
+    indie_save.getPlayer(&iroot, "player1", indie_player[0]);
+    indie_save.getPlayer(&iroot, "player2", indie_player[1]);
+    indie_save.getPlayer(&iroot, "player3", indie_player[2]);
+    indie_save.getPlayer(&iroot, "player2", indie_player[3]);
+
+    std::vector<std::vector<cell_t>> new_map = indie_save.getMatrix(&iroot);
+    indie_map.setMap(new_map);
 }
 
 void Bomberman::dumpJson(std::string file_name)

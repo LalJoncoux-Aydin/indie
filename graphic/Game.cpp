@@ -35,6 +35,7 @@ scene::ISceneManager* Game::Init_map(scene::ISceneManager* smgr, std::vector<std
 
             // Walls
             if (_map[y][x].element == INDESTRUCTIBLE_BOX || _map[y][x].element == DESTRUCTIBLE_BOX || _map[y][x].element == WALL) {
+				
 					scene::ISceneNode* node = 0;
 
 					node = _sceneManager->addLightSceneNode(0, core::vector3df(10,3,-7), video::SColorf(1.0f,1.0f,1.0f,1.0f), 4.0f);
@@ -108,6 +109,28 @@ void Game::MusicGame()
     _music.musicsetLoop(false);
 }
 
+void Game::MusicTimer()
+{
+    _music.setMusic("./assets/music/Exposed.wav");
+    _music.musicsetVolume(30);
+    _music.musicsetLoop(false);
+}
+
+void Game::MusicExplosion()
+{
+    _music.setMusic("./assets/music/Explosion.wav");
+    _music.musicsetVolume(30);
+    _music.musicsetLoop(false);
+}
+
+void Game::MusicDeath()
+{
+    _music.setMusic("./assets/music/Death.wav");
+    _music.musicsetVolume(80);
+    _music.musicsetLoop(false);
+}
+
+
 void Game::updateMap(std::vector<std::vector<cell_t>> _map)
 {
     for (int y = 0; y <= 16; ++y) {
@@ -135,12 +158,16 @@ void Game::updateMap(std::vector<std::vector<cell_t>> _map)
            // Dead or life
             if (_map[y][x].isDeadBody == true) {
                 if (_map[y][x].player == PLAYER1) {
+					MusicDeath();
     				_Player1->setVisible(false);
     			} else if (_map[y][x].player == PLAYER2) {
+					MusicDeath();
     				_Player2->setVisible(false);
     			} else if (_map[y][x].player == PLAYER3) {
+					MusicDeath();
     				_Player3->setVisible(false);
     			} else if (_map[y][x].player == PLAYER4) {
+					MusicDeath();
     				_Player4->setVisible(false);
     			}
             }
@@ -157,13 +184,17 @@ void Game::updateMap(std::vector<std::vector<cell_t>> _map)
 
             // Bombes
             if (_map[y][x].bombState != NO) {
+
                 if (list_bomb.empty()) {
+					MusicTimer();
+
                     IMeshSceneNode *_bombe = _sceneManager->addSphereSceneNode(0.8);
                     _bombe->setVisible(false);
         			_bombe->setMaterialTexture(0, _driver->getTexture("./assets/model3D/rouge.jpg"));
         			_bombe->setVisible(true);
         			_bombe->setPosition(irr::core::vector3df(temp_x,temp_y,1.5));
                     list_bomb.push_back(_bombe);
+
                 } else {
                     bool new_bomb = false;
                     for(int it = 0; it < list_bomb.size(); it++) {
@@ -174,6 +205,8 @@ void Game::updateMap(std::vector<std::vector<cell_t>> _map)
                                 list_bomb.erase(list_bomb.begin());
                             }
                 			if (_map[y][x].bombState == EXPLOSION1) {
+																		//MusicExplosion();
+
                 				list_bomb[it]->setMaterialTexture(0, _driver->getTexture("./assets/model3D/rouge.jpg"));
                 				list_bomb[it]->setVisible(false);
                 				list_bomb[it]->setPosition(irr::core::vector3df(temp_x,temp_y,1.5));

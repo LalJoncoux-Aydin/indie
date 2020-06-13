@@ -25,6 +25,9 @@ public:
 	void updateMap(std::vector<std::vector<cell_t>> map);
     ISceneManager* Init_map(scene::ISceneManager* smgr, std::vector<std::vector<cell_t>> _map, int _size, video::IVideoDriver* driver);
     void MusicGame();
+    void MusicTimer();
+    void MusicExplosion();
+    void MusicDeath();
 
     int getButton() {
 		return 0;

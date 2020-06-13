@@ -45,6 +45,7 @@ enum
     GUI_ID_INTRO,
     GUI_ID_BUTTON,
     GUI_ID_QUIT_BUTTON,
+    GUI_ID_MULTI_BUTTON,
     GUI_ID_QUIT_BUTTON_CG = 101,
     GUI_ID_ADDPLAYER_BUTTON,
     GUI_ID_ADDIA_BUTTON,
@@ -217,6 +218,16 @@ public:
                     _music.setMusic("./assets/music/Start.wav");
                     _music.musicsetVolume(30);
                     _music.soundsetLoop(false);
+                    }
+                    return true;
+
+                case GUI_ID_MULTI_BUTTON: {
+                    _multi = true;
+
+                    _music.setMusic("./assets/music/Start.wav");
+                    _music.musicsetVolume(100);
+                    _music.soundsetLoop(false);
+                    //music.play();
                     }
                     return true;
 

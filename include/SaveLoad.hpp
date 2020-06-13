@@ -97,16 +97,51 @@ class SaveLoad
             return (times);
         };
 
-        std::vector<std::pair<std::string, std::string>> getPlayer(pt::ptree *iroot, std::string key)
+        void getPlayer(pt::ptree *iroot, std::string key, ICharacter *new_player)
         {
-            std::vector<std::pair<std::string, std::string>> players;// = new std::vector<std::pair<std::string, std::string>>();
+            unsigned int _posx = 0;
+            unsigned int _posy = 0;
+            for (pt::ptree::value_type &child : iroot->get_child(key)) {
+                std::string name = child.first;
 
-            for (pt::ptree::value_type &player : iroot->get_child(key)) {
-                std::string name = player.first;
-                std::string color = player.second.data();
-                players.push_back(std::make_pair(name, color));
+                if (strcmp(name.c_str(), "_isIa") == 0) {
+                    new_player->setIsIa((bool)std::stoul(child.second.data(), nullptr, 0));
+                }
+                if (strcmp(name.c_str(), "posX") == 0) {
+                    _posx = (unsigned int)std::stoul(child.second.data(), nullptr, 0);
+                }
+                if (strcmp(name.c_str(), "posY") == 0) {
+                    _posy = (unsigned int)std::stoul(child.second.data(), nullptr, 0);
+                    Vector new_vector(_posx, _posy);
+                    new_player->setPos(new_vector);
+                }
+                if (strcmp(name.c_str(), "_isDead") == 0) {
+                    new_player->setIsDead((bool)std::stoul(child.second.data(), nullptr, 0));
+                }
+                if (strcmp(name.c_str(), "_getSpeed") == 0) {
+                    new_player->setSpeed((unsigned int)std::stoul(child.second.data(), nullptr, 0));
+                }
+                if (strcmp(name.c_str(), "_bombRadius") == 0) {
+                    new_player->setSpeed((unsigned int)std::stoul(child.second.data(), nullptr, 0));
+                    new_player->getBombs()->setExplosionRadius(new_player->getBombRadius());
+                }
+
+                // BOMBS
+                if (strcmp(name.c_str(), "bomb_x") == 0) {
+                    _posx = (unsigned int)std::stoul(child.second.data(), nullptr, 0);
+                }
+                if (strcmp(name.c_str(), "bomb_y") == 0) {
+                    _posy = (unsigned int)std::stoul(child.second.data(), nullptr, 0);
+                    Vector new_vector(_posx, _posy);
+                    new_player->getBombs()->setPos(new_vector);
+                }
+                if (strcmp(name.c_str(), "_placed") == 0) {
+                    new_player->getBombs()->setPlace((bool)std::stoul(child.second.data(), nullptr, 0));
+                }
+                if (strcmp(name.c_str(), "_time") == 0) {
+                    new_player->getBombs()->setPassedTime((std::size_t)std::stoul(child.second.data(), nullptr, 0));
+                }
             }
-            return (players);
         };
 
         int dumpPlayer(pt::ptree *oroot, std::vector<std::pair<std::string, std::string>> *players, std::string key)
@@ -143,7 +178,7 @@ class SaveLoad
                 nb_player_node.push_back(std::make_pair("", temp_node));
             } else {
                 pt::ptree temp_node;
-                temp_node.put("", "Player 2");
+                temp_node.put("", "Player 1");
                 nb_player_node.push_back(std::make_pair("", temp_node));
             }
             oroot->add_child("Nb_player", nb_player_node);

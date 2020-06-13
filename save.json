@@ -1,14 +1,14 @@
 {
     "Nb_player": [
-        "Player 2"
+        "Player 1"
     ],
     "player1": {
         "_getSpeed": "1",
         "_bombRadius": "3",
         "_placed": "0",
-        "_time": "0",
+        "_time": "9697",
         "posX": "15",
-        "posY": "2"
+        "posY": "4"
     },
     "player2": {
         "_getSpeed": "1",
@@ -191,7 +191,7 @@
         "bombSate": "0",
         "player": "2",
         "isBom": "0",
-        "orient": "-76784584",
+        "orient": "-1008686024",
         "isDeadBody": "0"
     },
     "Map_1_2": {
@@ -1059,7 +1059,7 @@
         "isDeadBody": "0"
     },
     "Map_7_2": {
-        "element": "3",
+        "element": "0",
         "bombSate": "0",
         "player": "0",
         "isBom": "0",
@@ -1075,7 +1075,7 @@
         "isDeadBody": "0"
     },
     "Map_7_4": {
-        "element": "3",
+        "element": "0",
         "bombSate": "0",
         "player": "0",
         "isBom": "0",
@@ -1355,7 +1355,7 @@
         "isDeadBody": "0"
     },
     "Map_9_3": {
-        "element": "3",
+        "element": "0",
         "bombSate": "0",
         "player": "0",
         "isBom": "0",
@@ -1371,7 +1371,7 @@
         "isDeadBody": "0"
     },
     "Map_9_5": {
-        "element": "3",
+        "element": "0",
         "bombSate": "0",
         "player": "0",
         "isBom": "0",
@@ -1379,7 +1379,7 @@
         "isDeadBody": "0"
     },
     "Map_9_6": {
-        "element": "3",
+        "element": "0",
         "bombSate": "0",
         "player": "0",
         "isBom": "0",
@@ -1483,7 +1483,7 @@
         "isDeadBody": "0"
     },
     "Map_10_1": {
-        "element": "3",
+        "element": "0",
         "bombSate": "0",
         "player": "0",
         "isBom": "0",
@@ -1627,7 +1627,7 @@
         "isDeadBody": "0"
     },
     "Map_11_1": {
-        "element": "3",
+        "element": "0",
         "bombSate": "0",
         "player": "0",
         "isBom": "0",
@@ -1635,7 +1635,7 @@
         "isDeadBody": "0"
     },
     "Map_11_2": {
-        "element": "3",
+        "element": "0",
         "bombSate": "0",
         "player": "0",
         "isBom": "0",
@@ -1651,7 +1651,7 @@
         "isDeadBody": "0"
     },
     "Map_11_4": {
-        "element": "3",
+        "element": "0",
         "bombSate": "0",
         "player": "0",
         "isBom": "0",
@@ -2213,13 +2213,13 @@
     "Map_15_2": {
         "element": "0",
         "bombSate": "0",
-        "player": "1",
+        "player": "0",
         "isBom": "0",
-        "orient": "-76168776",
+        "orient": "0",
         "isDeadBody": "0"
     },
     "Map_15_3": {
-        "element": "3",
+        "element": "0",
         "bombSate": "0",
         "player": "0",
         "isBom": "0",
@@ -2229,9 +2229,9 @@
     "Map_15_4": {
         "element": "0",
         "bombSate": "0",
-        "player": "0",
+        "player": "1",
         "isBom": "0",
-        "orient": "0",
+        "orient": "-1008070216",
         "isDeadBody": "0"
     },
     "Map_15_5": {
@@ -2319,7 +2319,7 @@
         "bombSate": "0",
         "player": "4",
         "isBom": "0",
-        "orient": "0",
+        "orient": "984348630",
         "isDeadBody": "0"
     },
     "Map_15_16": {
