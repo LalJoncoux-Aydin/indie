@@ -22,6 +22,7 @@
 
 #include "ICharacter.hpp"
 #include "Bomb.hpp"
+#include "SaveLoad.hpp"
 // Define
 
 
@@ -30,17 +31,23 @@ class Bomberman {
   public:
     Bomberman();
 
-	void initGame();
 	void scenesHandler();
 	void clear();
     void endGame();
+
     void manageMenu();
+    void initGame();
     void manageGame();
+
     int getKeyPlayer1();
     int getKeyPlayer2();
+
+    void dumpJson(std::string file_name);
+
     ~Bomberman();
   private:
     Map indie_map = Map(16);
+    SaveLoad indie_save = SaveLoad();
 
     std::vector<ICharacter *> indie_player;
     std::stack<IScene *> _scenesStack;
@@ -49,6 +56,7 @@ class Bomberman {
     bool saved_game = false;
     bool run_game = false;
     bool run_menu = true;
+    int win_game = 0; // 1 : player 1 win // 2 : player 2 win // 3 : loose
 
 	IScene				*_oldScene = NULL;
 	IrrlichtDevice		*_device;

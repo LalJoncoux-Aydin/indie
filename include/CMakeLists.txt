@@ -26,4 +26,5 @@ set(
     Game.hpp
     Win.hpp
     Loose.hpp
+    SaveLoad.hpp
 )

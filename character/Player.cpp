@@ -10,7 +10,6 @@
 Player::Player(Vector<unsigned int> pos, bool isIa) :  Perso{pos, isIa}//_pos(pos), _isIa(isIa)
 {
     _isDead = false;
-    _maxBombs = 2;
     _speed = 1;
     _bombRadius = 3;
 }
@@ -32,9 +31,6 @@ void Player::powerUp(PowerUp power)
 {
     if (power == SPEED) {
         _speed++;
-    }
-    if (power == BOMB_NUMBER) {
-        _maxBombs++;
     }
     if (power == BOMB_RADIUS) {
         _bombRadius++;

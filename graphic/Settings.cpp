@@ -96,6 +96,8 @@ int Settings::getButton()
 {
     if (eventReceiver->getStartStatus() == true)
         return 4;
+    if (eventReceiver->getMultiStatus() == true)
+        return 5;
     return 0;
 }
 

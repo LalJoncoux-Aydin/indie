@@ -233,6 +233,33 @@ Intro.cpp.s:
 	cd /home/harry/Documents/indie && $(MAKE) -f graphic/CMakeFiles/lib_graph.dir/build.make graphic/CMakeFiles/lib_graph.dir/Intro.cpp.s
 .PHONY : Intro.cpp.s
 
+Loose.o: Loose.cpp.o
+
+.PHONY : Loose.o
+
+# target to build an object file
+Loose.cpp.o:
+	cd /home/harry/Documents/indie && $(MAKE) -f graphic/CMakeFiles/lib_graph.dir/build.make graphic/CMakeFiles/lib_graph.dir/Loose.cpp.o
+.PHONY : Loose.cpp.o
+
+Loose.i: Loose.cpp.i
+
+.PHONY : Loose.i
+
+# target to preprocess a source file
+Loose.cpp.i:
+	cd /home/harry/Documents/indie && $(MAKE) -f graphic/CMakeFiles/lib_graph.dir/build.make graphic/CMakeFiles/lib_graph.dir/Loose.cpp.i
+.PHONY : Loose.cpp.i
+
+Loose.s: Loose.cpp.s
+
+.PHONY : Loose.s
+
+# target to generate assembly for a file
+Loose.cpp.s:
+	cd /home/harry/Documents/indie && $(MAKE) -f graphic/CMakeFiles/lib_graph.dir/build.make graphic/CMakeFiles/lib_graph.dir/Loose.cpp.s
+.PHONY : Loose.cpp.s
+
 Menu.o: Menu.cpp.o
 
 .PHONY : Menu.o
@@ -335,6 +362,9 @@ help:
 	@echo "... Intro.o"
 	@echo "... Intro.i"
 	@echo "... Intro.s"
+	@echo "... Loose.o"
+	@echo "... Loose.i"
+	@echo "... Loose.s"
 	@echo "... Menu.o"
 	@echo "... Menu.i"
 	@echo "... Menu.s"

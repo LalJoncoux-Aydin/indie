@@ -85,10 +85,4 @@ class Win : public IScene {
     SAppContext             *context;
 
 };
-
-
-<<<<<<< HEAD
 #endif
-=======
-#endif
->>>>>>> 9f3ef604bac17b03d2ba0c165fc710683b2b7a00

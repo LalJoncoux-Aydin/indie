@@ -27,13 +27,13 @@ void Bomberman::initGame()
     _eventReceiver = new MyEventReceiver1;
     _device->setEventReceiver(_eventReceiver);
 
-    //if (multi_player == true) {
-    Player *player2 = new Player(Vector<unsigned int>(1,1), false);
-    indie_player.push_back(player2);
- /*else {
-    IA *player2 = new IA(Vector<unsigned int>(1,1), false);
-    indie_player.push_back(player2);
-  }*/
+    if (multi_player == true) {
+        Player *player2 = new Player(Vector<unsigned int>(1,1), false);
+        indie_player.push_back(player2);
+    } else {
+        IA *player2 = new IA(Vector<unsigned int>(1,1), false);
+        indie_player.push_back(player2);
+    }
 
     IA *player3 = new IA(Vector<unsigned int>(1,15), false);
     indie_player.push_back(player3);
@@ -84,7 +84,21 @@ void Bomberman::manageGame()
     // WIN OR LOOSE ?
     if (indie_player[0]->isDead() == true) {
         run_game = false;
+        win_game = 3;
         return;
+    }
+    if (multi_player == true) {
+        if (indie_player[2]->isDead() == true && indie_player[3]->isDead() == true) {
+            run_game = false;
+            win_game = 2;
+            return;
+        }
+    } else {
+        if (indie_player[1]->isDead() == true && indie_player[2]->isDead() == true && indie_player[3]->isDead() == true) {
+            run_game = false;
+            win_game = 1;
+            return;
+        }
     }
 
     // GET KEYS
@@ -101,15 +115,22 @@ void Bomberman::manageGame()
         indie_player[0]->move(orientation(direction_1));
     }
 
-    if (direction_2 == 5) {
-        if (indie_player[1]->getBombs()->isPlaced() == false) {
-            indie_player[1]->getBombs()->setPlace(true);
-            indie_player[1]->getBombs()->setTimePass();
-            indie_player[1]->getBombs()->setPos(indie_player[1]->getPos());
+    if (multi_player == true) {
+        if (direction_2 == 5) {
+            if (indie_player[1]->getBombs()->isPlaced() == false) {
+                indie_player[1]->getBombs()->setPlace(true);
+                indie_player[1]->getBombs()->setTimePass();
+                indie_player[1]->getBombs()->setPos(indie_player[1]->getPos());
+            }
+        } else if (direction_2 != 0) {
+            indie_player[1]->move(orientation(direction_2));
         }
-    } else if (direction_2 != 0) {
-        indie_player[1]->move(orientation(direction_2));
     }
+    // else {
+    //     indie_player[1]->move();
+    // }
+    // indie_player[2]->move();
+    // indie_player[3]->move();
     _scenesStack.top()->updateMap(indie_map.update(indie_player));
 }
 
@@ -143,10 +164,10 @@ void Bomberman::manageMenu()
         run_menu = false;
         run_game = true;
         initGame();
-      /* if (selection == 4)
-          multi_player == false;
+        if (selection == 4)
+          multi_player = false;
         if (selection == 5)
-          multi_player == true;*/
+          multi_player = true;
     }
 }
 
@@ -185,7 +206,22 @@ void Bomberman::clear()
 	}
 }
 
+void Bomberman::dumpJson(std::string file_name)
+{
+    pt::ptree oroot;
+    indie_save.dumpNbPlayer(&oroot, multi_player);
+    indie_save.dumpPlayer(&oroot, indie_save.characterPrep(indie_player[0]), "player1");
+    indie_save.dumpPlayer(&oroot, indie_save.characterPrep(indie_player[1]), "player2");
+    indie_save.dumpPlayer(&oroot, indie_save.characterPrep(indie_player[2]), "player3");
+    indie_save.dumpPlayer(&oroot, indie_save.characterPrep(indie_player[3]), "player4");
+
+    indie_save.dumpMatrix(&oroot, indie_map.getMap());
+    std::ofstream my_output_file(file_name);
+    pt::write_json(my_output_file, oroot);
+}
+
 Bomberman::~Bomberman()
 {
-
+    dumpJson("save.json");
+  //  readJson("save.json");
 }

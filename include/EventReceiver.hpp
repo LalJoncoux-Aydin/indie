@@ -171,6 +171,7 @@ virtual bool getStartStatus()
     {
         return _start;
     }
+    
     virtual bool getIntroStatus()
     {
         return _intro;
@@ -179,6 +180,7 @@ virtual bool getStartStatus()
 private:
     SAppContext             &Context;
     bool                    _start = false;
+    bool                    _multi = false;
     IrrlichtDevice          *device;
     GameMusic _music;
     sf::Music            *engine;
@@ -237,6 +239,10 @@ virtual bool getStartStatus()
     {
         return _start;
     }
+    virtual bool getMultiStatus()
+    {
+        return _multi;
+    }
 
 private:
     SAppContextCG           &Context;
@@ -246,6 +252,7 @@ private:
     std::stack<IScene *>    *scenesStack;
     bool                    *stop;
     bool                    _start = false;
+    bool                    _multi = false;
 
 
 };

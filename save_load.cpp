@@ -141,7 +141,7 @@ namespace libSave
     {
         std::vector<Bomb> bombs = player->getBombs();
         std::vector<unsigned int> tab;
- 
+
         for (auto &bomb : bombs) {
             tab.push_back(bomb.getTimeBeforeExplosion());
         }
@@ -197,17 +197,17 @@ int dumpJson(std::string file_name)
     players.push_back(Character(Vector<unsigned int>(31,31)));
 
     map.dump();
-    libSave::dumpPlayer(&oroot, libSave::characterPrep(&players[0]), "player1");
-    libSave::dumpPlayer(&oroot, libSave::characterPrep(&players[1]), "player2");
-    libSave::dumpPlayer(&oroot, libSave::characterPrep(&players[2]), "player3");
-    libSave::dumpPlayer(&oroot, libSave::characterPrep(&players[3]), "player4");
+    libSave::dumpPlayer(&oroot, libSave::characterPrep(players[0]), "player1");
+    libSave::dumpPlayer(&oroot, libSave::characterPrep(players[1]), "player2");
+    libSave::dumpPlayer(&oroot, libSave::characterPrep(players[2]), "player3");
+    libSave::dumpPlayer(&oroot, libSave::characterPrep(players[3]), "player4");
 
-    libSave::dumpVector(&oroot, libSave::getBombTime(&players[0]), "player1_bomb");
-    libSave::dumpVector(&oroot, libSave::getBombTime(&players[1]), "player2_bomb");
-    libSave::dumpVector(&oroot, libSave::getBombTime(&players[2]), "player3_bomb");
-    libSave::dumpVector(&oroot, libSave::getBombTime(&players[3]), "player4_bomb");
+    libSave::dumpVector(&oroot, libSave::getBombTime(players[0]), "player1_bomb");
+    libSave::dumpVector(&oroot, libSave::getBombTime(players[1]), "player2_bomb");
+    libSave::dumpVector(&oroot, libSave::getBombTime(players[2]), "player3_bomb");
+    libSave::dumpVector(&oroot, libSave::getBombTime(players[3]), "player4_bomb");
 
-    libSave::dumpMatrix(&oroot, map.getMap());
+    libSave::dumpMatrix(&oroot, indie_map.getMap());
     std::ofstream my_output_file(file_name);
     pt::write_json(my_output_file, oroot);
     return (0);

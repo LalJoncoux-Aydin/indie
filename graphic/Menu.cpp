@@ -13,7 +13,7 @@ Menu::Menu(IrrlichtDevice *device, std::stack<IScene *> *stack) {
 	_guiEnv = _device->getGUIEnvironment();
 	_driver = _device->getVideoDriver();
 	_scenesStack = stack;
-    MusicMenu();
+   // MusicMenu();
 
     //_music_loop = NULL;
 
