@@ -70,6 +70,7 @@ std::vector<int> Map::dropBomb(int xPos, int yPos, std::shared_ptr<Bomb> bomb)
 
         if (_map[xPos + i][yPos].element == DESTRUCTIBLE_BOX) {
             _map[xPos + i][yPos].element = BROKEN_BOX;
+            return result;
         } else if (!(_map[xPos + i][yPos].element == WALL) && !(_map[xPos + i][yPos].element == INDESTRUCTIBLE_BOX) && _map[xPos + i][yPos].player == NO_PLAYER) {
             _map[xPos + i][yPos].element = BURNING;
         } else if (!(_map[xPos + i][yPos].player == NO_PLAYER)) {
@@ -85,6 +86,7 @@ std::vector<int> Map::dropBomb(int xPos, int yPos, std::shared_ptr<Bomb> bomb)
 
         if (_map[xPos][yPos - i].element == DESTRUCTIBLE_BOX) {
             _map[xPos][yPos - i].element = BROKEN_BOX;
+            return result;
         } else if (!(_map[xPos][yPos - i].element == WALL) && !(_map[xPos][yPos - i].element == INDESTRUCTIBLE_BOX) && _map[xPos][yPos - i].player == NO_PLAYER) {
             _map[xPos][yPos - i].element = BURNING;
         } else if (!(_map[xPos][yPos - i].player == NO_PLAYER)) {
@@ -100,6 +102,7 @@ std::vector<int> Map::dropBomb(int xPos, int yPos, std::shared_ptr<Bomb> bomb)
 
         if (_map[xPos][yPos + i].element == DESTRUCTIBLE_BOX) {
             _map[xPos][yPos + i].element = BROKEN_BOX;
+            return result;
         } else if (!(_map[xPos][yPos + i].element == WALL) && !(_map[xPos][yPos + i].element == INDESTRUCTIBLE_BOX) && _map[xPos][yPos + i].player == NO_PLAYER) {
             _map[xPos][yPos + i].element = BURNING;
         } else if (!(_map[xPos][yPos + i].player == NO_PLAYER)) {
