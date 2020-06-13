@@ -10,6 +10,7 @@ set(
     Settings.cpp
     Game.cpp
     Win.cpp
+    Loose.cpp
 )
 
 add_library(lib_graph ${GRAPH} ${HEADERS})

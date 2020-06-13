@@ -25,4 +25,5 @@ set(
     Vector.hpp
     Game.hpp
     Win.hpp
+    Loose.hpp
 )

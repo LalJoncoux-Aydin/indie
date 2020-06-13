@@ -1,14 +1,14 @@
-#ifndef WIN_HPP_
-#define WIN_HPP_
+#ifndef LOOSE_HPP_
+#define LOOSE_HPP_
 
 #include "IScene.hpp"
 #include "EventReceiver.hpp"
 #include "GameMusic.hpp"
 
-class Win : public IScene {
+class Loose : public IScene {
     public:
-    Win(IrrlichtDevice *, std::stack<IScene *> *);
-    ~Win();
+    Loose(IrrlichtDevice *, std::stack<IScene *> *);
+    ~Loose();
 
     void init();
     void render(void);
@@ -18,9 +18,7 @@ class Win : public IScene {
          return smgr;
     };
 
-    int getButton(){
-        return 0;
-    };
+    int getButton(){};
 
     void waitBomb(){};
 
@@ -87,8 +85,4 @@ class Win : public IScene {
 };
 
 
-<<<<<<< HEAD
 #endif
-=======
-#endif
->>>>>>> 9f3ef604bac17b03d2ba0c165fc710683b2b7a00
