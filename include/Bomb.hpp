@@ -13,35 +13,40 @@
 
 class Bomb {
     public:
-        Bomb(unsigned int size, Vector<unsigned int> pos);
-        Bomb(unsigned int time);
-        ~Bomb();
+        Bomb() {};
+        ~Bomb() {};
 
         // getters
-        unsigned int getTimeBeforeExplosion() { return 150 - (_lastCheck - _timePlaced); };
         bool isPlaced() { return _placed; };
-        int getPassedTime();
-        void setPassedTime(std::size_t time) {
-            _time = time;
-        };
-        void timePass();
-
-        // setters
+        int getPassedTime() { return _time; };
         unsigned int getExplosionRadius() { return _explosionRadius; };
         Vector<unsigned int> getPos() { return _pos; };
 
-        void detonate();
+        // Setters
+        void setPassedTime(std::size_t time) {
+            _time = time;
+        };
+        void setPlace(bool status) {
+            _placed = status;
+        };
+        void setTimePass();
+        void setPos(Vector<unsigned int> pos) {
+            _pos = pos;
+        };
+        void setExplosionRadius(int explo) {
+            _explosionRadius = explo;
+        };
 
-        bool checkTimerChange();
-        bool shouldExplode();
-
+        // Functions
+        std::size_t timePass();
+      //  void detonate();
+        // bool checkTimerChange();
+        // bool shouldExplode();
         void place();
 
     private:
-        unsigned int _explosionRadius;
+        unsigned int _explosionRadius = 2;
         Vector<unsigned int> _pos;
-        unsigned int _timePlaced;
-        unsigned int _lastCheck = 0;
         bool _placed = false;
         std::size_t _time = 0;
 };

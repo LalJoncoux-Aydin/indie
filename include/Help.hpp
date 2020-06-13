@@ -26,8 +26,6 @@ public:
     void InitButtonBack();
     void InitScrollBar();
     void hoverBack();
-    void waitBomb(){};
-
 
     IrrlichtDevice *getDevice(void) {
         return (device);

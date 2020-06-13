@@ -32,14 +32,3 @@ void Player::powerUp(PowerUp power)
         _bombRadius++;
     }
 }*/
-
-bool IA::dropBomb()
-{
-    if (_maxBombs > _currentBombs.size()) {
-  //      Bomb &new_bomb(_bombRadius, _pos);
-        _currentBombs.push_back(new Bomb(_bombRadius, _pos));
-        std::cout << _currentBombs[0]->getTimeBeforeExplosion() << std::endl;
-        return (true);
-    }
-    return (false);
-}

@@ -18,6 +18,7 @@
 #include "Game.hpp"
 #include "cell.hpp"
 #include "Intro.hpp"
+#include "Win.hpp"
 
 #include "ICharacter.hpp"
 #include "Bomb.hpp"
@@ -29,10 +30,10 @@ class Bomberman {
   public:
     Bomberman();
 
-	  void 				initGame();
-	  void 				scenesHandler();
-	  void 				clear();
-
+	void initGame();
+	void scenesHandler();
+	void clear();
+    void endGame();
     void manageMenu();
     void manageGame();
     int getKeyPlayer1();
@@ -49,15 +50,13 @@ class Bomberman {
     bool run_game = false;
     bool run_menu = true;
 
-	  IScene				*_oldScene = NULL;
-	  IrrlichtDevice		*_device;
-	  sf::Music		*_soundEngine;
+	IScene				*_oldScene = NULL;
+	IrrlichtDevice		*_device;
+	sf::Music		*_soundEngine;
     MyEventReceiver1 *_eventReceiver;
 
-    int direction;
     int direction_1 = 0;
     int direction_2 = 0;
-    bool direction_1_posed = false;
 };
 
 #endif /* !BOMBERMAN_HPP_ */

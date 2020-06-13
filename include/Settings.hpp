@@ -25,7 +25,6 @@ public:
 	void init();
 	void render(void);
     int getButton();
-    void waitBomb(){};
 
 	IrrlichtDevice *getDevice(void) {
         return (device);

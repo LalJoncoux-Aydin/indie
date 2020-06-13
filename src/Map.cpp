@@ -47,68 +47,71 @@ Map::Map(int size, std::vector<std::vector<cell_t>> map)
     _map = map;
 }
 
-int Map::dropBomb(int xPos, int yPos, int boost, std::vector<ICharacter *> characters)
+int Map::dropBomb(int xPos, int yPos, std::shared_ptr<Bomb> bomb)
 {
-    _map[xPos][yPos].bombState = NO;
-    for (auto &perso : characters) {
-        auto pos = perso->getPos();
-        auto pos_x = pos.x;
-        auto pos_y = pos.y;
-        for (int x = xPos, count = 0; x < _size && count < 3 + boost; x++, count++) {
-            if (_map[x][yPos].element == INDESTRUCTIBLE_BOX) {break;}
-            if (_map[x][yPos].element == WALL) {break;}
-            if (_map[x][yPos].element == DESTRUCTIBLE_BOX) {
-                _map[x][yPos].element = BROKEN_BOX;
-            }
-            _map[x][yPos].isBoom = true;
-            if (pos_x == x && pos_y == yPos) {
-                perso->die();
-                _map[x][yPos].isDeadBody = true;
-                _map[x][yPos].player = NO_PLAYER;
-            }
+    unsigned int bomb_rad = bomb->getExplosionRadius();
+    for (int i = 1; i != bomb_rad + 1 && xPos - i >= 0 && xPos + i <= 16 && yPos - i >= 0 && yPos + i <= 16; i++) {
+        if (_map[xPos - i][yPos].element == DESTRUCTIBLE_BOX) {
+            _map[xPos - i][yPos].element = BROKEN_BOX;
+        } else if (!(_map[xPos - i][yPos].element == WALL) && !(_map[xPos - i][yPos].element == INDESTRUCTIBLE_BOX) && _map[xPos - i][yPos].player == NO_PLAYER) {
+            _map[xPos - i][yPos].element = BURNING;
+        } else if (!(_map[xPos - i][yPos].player == NO_PLAYER)) {
+            if (_map[xPos - i][yPos].player == PLAYER1)
+                return 1;
+            if (_map[xPos - i][yPos].player == PLAYER2)
+                return 2;
+            if (_map[xPos - i][yPos].player == PLAYER3)
+                return 3;
+            if (_map[xPos - i][yPos].player == PLAYER4)
+                return 4;
         }
-        for (int x = xPos, count = 0; x > 0 && count < 3 + boost; x--, count++) {
-            if (_map[x][yPos].element == INDESTRUCTIBLE_BOX) {break;}
-            if (_map[x][yPos].element == WALL) {break;}
-            if (_map[x][yPos].element == DESTRUCTIBLE_BOX) {
-                _map[x][yPos].element = BROKEN_BOX;
-            }
-            _map[x][yPos].isBoom = true;
-            if (pos_x == x && pos_y == yPos) {
-                perso->die();
-                _map[x][yPos].isDeadBody = true;
-                _map[x][yPos].player = NO_PLAYER;
-            }
+
+        if (_map[xPos + i][yPos].element == DESTRUCTIBLE_BOX) {
+            _map[xPos + i][yPos].element = BROKEN_BOX;
+        } else if (!(_map[xPos + i][yPos].element == WALL) && !(_map[xPos + i][yPos].element == INDESTRUCTIBLE_BOX) && _map[xPos + i][yPos].player == NO_PLAYER) {
+            _map[xPos + i][yPos].element = BURNING;
+        } else if (!(_map[xPos + i][yPos].player == NO_PLAYER)) {
+            if (_map[xPos + i][yPos].player == PLAYER1)
+                return 1;
+            if (_map[xPos + i][yPos].player == PLAYER2)
+                return 2;
+            if (_map[xPos + i][yPos].player == PLAYER3)
+                return 3;
+            if (_map[xPos + i][yPos].player == PLAYER4)
+                return 4;
         }
-        for (int y = yPos, count = 0; y > 0 && count < 3 + boost; y--, count++) {
-            if (_map[xPos][y].element == INDESTRUCTIBLE_BOX) {break;}
-            if (_map[xPos][y].element == WALL) {break;}
-            if (_map[xPos][y].element == DESTRUCTIBLE_BOX) {
-                _map[xPos][y].element = BROKEN_BOX;
-            }
-            _map[xPos][y].isBoom = true;
-            if (pos_x == xPos && pos_y == y) {
-                perso->die();
-                _map[xPos][y].isDeadBody = true;
-                _map[xPos][y].player = NO_PLAYER;
-            }
+
+        if (_map[xPos][yPos - i].element == DESTRUCTIBLE_BOX) {
+            _map[xPos][yPos - i].element = BROKEN_BOX;
+        } else if (!(_map[xPos][yPos - i].element == WALL) && !(_map[xPos][yPos - i].element == INDESTRUCTIBLE_BOX) && _map[xPos][yPos - i].player == NO_PLAYER) {
+            _map[xPos][yPos - i].element = BURNING;
+        } else if (!(_map[xPos][yPos - i].player == NO_PLAYER)) {
+            if (_map[xPos][yPos - i].player == PLAYER1)
+                return 1;
+            if (_map[xPos][yPos - i].player == PLAYER2)
+                return 2;
+            if (_map[xPos][yPos - i].player == PLAYER3)
+                return 3;
+            if (_map[xPos][yPos - i].player == PLAYER4)
+                return 4;
         }
-        for (int y = yPos, count = 0; y < _size && count < 3 + boost; y++, count++) {
-            if (_map[xPos][y].element == INDESTRUCTIBLE_BOX) {break;}
-            if (_map[xPos][y].element == WALL) {break;}
-            if (_map[xPos][y].element == DESTRUCTIBLE_BOX) {
-                _map[xPos][y].element = BROKEN_BOX;
-            }
-            _map[xPos][y].isBoom = true;
-            if (pos_x == xPos && pos_y == y) {
-                perso->die();
-                _map[xPos][y].isDeadBody = true;
-                _map[xPos][y].player = NO_PLAYER;
-            }
+
+        if (_map[xPos][yPos + i].element == DESTRUCTIBLE_BOX) {
+            _map[xPos][yPos + i].element = BROKEN_BOX;
+        } else if (!(_map[xPos][yPos + i].element == WALL) && !(_map[xPos][yPos + i].element == INDESTRUCTIBLE_BOX) && _map[xPos][yPos + i].player == NO_PLAYER) {
+            _map[xPos][yPos + i].element = BURNING;
+        } else if (!(_map[xPos][yPos + i].player == NO_PLAYER)) {
+            if (_map[xPos][yPos + i].player == PLAYER1)
+                return 1;
+            if (_map[xPos][yPos + i].player == PLAYER2)
+                return 2;
+            if (_map[xPos][yPos + i].player == PLAYER3)
+                return 3;
+            if (_map[xPos][yPos + i].player == PLAYER4)
+                return 4;
         }
     }
-    _bomb_drop = true;
-    return (true);
+    return 0;
 }
 
 void Map::clean(PlayerNb p)
@@ -123,170 +126,119 @@ void Map::clean(PlayerNb p)
     }
 }
 
-std::vector<std::vector<cell_t>> Map::update(std::vector<ICharacter *> characters)
+void Map::initPlayer(std::vector<ICharacter *> characters)
 {
     int counter = 0;
-
     for (auto &character : characters) {
         auto pos = character->getPos();
         auto x = pos.x;
         auto y = pos.y;
-        ///
+
+        // Player
+        if (counter == 0 && _map[x][y].element == EMPTY)
+            _map[x][y].player = PLAYER1;
+        else if (counter == 1 && _map[x][y].element == EMPTY)
+            _map[x][y].player = PLAYER2;
+        else if (counter == 2 && _map[x][y].element == EMPTY)
+            _map[x][y].player = PLAYER3;
+        else if (counter == 3 && _map[x][y].element == EMPTY)
+            _map[x][y].player = PLAYER4;
+        counter++;
+    }
+}
+
+std::vector<std::vector<cell_t>> Map::update(std::vector<ICharacter *> characters)
+{
+    // FILL WALLS
+    for (int i = 0 ; i <= _size ; ++i) {
+        for (int x = 0 ; x <= _size ; ++x) {
+            // Walls
+            if (_map[i][x].element == BROKEN_BOX || _map[i][x].element == BURNING)
+                _map[i][x].element = EMPTY;
+            if (_map[i][x].isDeadBody == true) {
+                _map[i][x].player = NO_PLAYER;
+                _map[i][x].isDeadBody = false;
+            }
+        }
+    }
+
+    // FILL CHARACTER
+    int counter = 0;
+    for (auto &character : characters) {
+        auto pos = character->getPos();
+        auto x = pos.x;
+        auto y = pos.y;
+
+        // Orientation
         orientation tmp = character->getOrientation();
-        ///
-        if (counter == 0 && _map[x][y].element == EMPTY) {
+
+        // Player
+        if (counter == 0 && _map[x][y].element == EMPTY && _map[x][y].player != PLAYER2 && _map[x][y].player != PLAYER3 && _map[x][y].player != PLAYER4 && character->isDead() == false) {
             clean(PLAYER1);
-            if (_map[x][y].powerup != NO_POWERUP) {character->powerUp(_map[x][y].powerup);}
+          //  if (_map[x][y].powerup != NO_POWERUP) {character->powerUp(_map[x][y].powerup);}
             _map[x][y].player = PLAYER1;
             _map[x][y].orient = tmp;
         }
-        else if (counter == 1 && _map[x][y].element == EMPTY) {
+        else if (counter == 1 && _map[x][y].element == EMPTY && _map[x][y].player != PLAYER1 && _map[x][y].player != PLAYER3 && _map[x][y].player != PLAYER4 && character->isDead() == false) {
             clean(PLAYER2);
-            if (_map[x][y].powerup != NO_POWERUP) {character->powerUp(_map[x][y].powerup);}
+         //   if (_map[x][y].powerup != NO_POWERUP) {character->powerUp(_map[x][y].powerup);}
             _map[x][y].player = PLAYER2;
             _map[x][y].orient = tmp;
         }
-        else if (counter == 2 && _map[x][y].element == EMPTY) {
+        else if (counter == 2 && _map[x][y].element == EMPTY && _map[x][y].player != PLAYER1 && _map[x][y].player != PLAYER2 && _map[x][y].player != PLAYER4  && character->isDead() == false) {
             clean(PLAYER3);
-            if (_map[x][y].powerup != NO_POWERUP) {character->powerUp(_map[x][y].powerup);}
+         //   if (_map[x][y].powerup != NO_POWERUP) {character->powerUp(_map[x][y].powerup);}
             _map[x][y].player = PLAYER3;
             _map[x][y].orient = tmp;
         }
-        else if (counter == 3 && _map[x][y].element == EMPTY) {
+        else if (counter == 3 && _map[x][y].element == EMPTY && _map[x][y].player != PLAYER1 && _map[x][y].player != PLAYER2 && _map[x][y].player != PLAYER3  && character->isDead() == false) {
             clean(PLAYER4);
-            if (_map[x][y].powerup != NO_POWERUP) {character->powerUp(_map[x][y].powerup);}
+        //    if (_map[x][y].powerup != NO_POWERUP) {character->powerUp(_map[x][y].powerup);}
             _map[x][y].player = PLAYER4;
             _map[x][y].orient = tmp;
         } else {
             character->goToPrevPos();
         }
-        auto bombVec = character->getBombs();
-        for (auto &bomb : bombVec) {
-            if (bomb->isPlaced() == true) {
-                continue;
-            }
+
+        // Bomb
+        auto bomb = character->getBombs();
+        if (bomb->isPlaced() == true) {
             auto posBomb = bomb->getPos();
-            std::cout << _map[posBomb.x][posBomb.y].element << std::endl;
-            if (_map[posBomb.x][posBomb.y].element == EMPTY) {
+            if (_map[posBomb.x][posBomb.y].bombState == NO) {
                 _map[posBomb.x][posBomb.y].bombState = EXPLOSION5;
-                bomb->place();
+                bomb->setPlace(true);
+            }
+            if (bomb->getPassedTime() == 0)
+                bomb->setTimePass();
+            std::size_t _diff = bomb->timePass() - bomb->getPassedTime();
+            if (_map[posBomb.x][posBomb.y].bombState == EXPLOSION5 && _diff > 500) {
+                _map[posBomb.x][posBomb.y].bombState = EXPLOSION4;
+                bomb->setPassedTime(0);
+            } else if (_map[posBomb.x][posBomb.y].bombState == EXPLOSION4 && _diff > 500) {
+                _map[posBomb.x][posBomb.y].bombState = EXPLOSION3;
+                bomb->setPassedTime(0);
+            } else if (_map[posBomb.x][posBomb.y].bombState == EXPLOSION3 && _diff > 500) {
+                _map[posBomb.x][posBomb.y].bombState = EXPLOSION2;
+                bomb->setPassedTime(0);
+            } else if (_map[posBomb.x][posBomb.y].bombState == EXPLOSION2 && _diff > 500) {
+                _map[posBomb.x][posBomb.y].bombState = EXPLOSION1;
+                bomb->setPassedTime(0);
+            } else if (_map[posBomb.x][posBomb.y].bombState == EXPLOSION1 && _diff > 500) {
+                _map[posBomb.x][posBomb.y].bombState = NO;
+                int player_dead = dropBomb(posBomb.x, posBomb.y, bomb);
+                if (player_dead != 0) {
+                    characters[player_dead - 1]->die();
+                    auto dead_pos = characters[player_dead - 1]->getPos();
+                    _map[dead_pos.x][dead_pos.y].isDeadBody = true;
+                }
+                bomb->setPlace(false);
             }
         }
         counter++;
     }
-    for (auto &character : characters) {
-        int i = 0;
-        auto bombVec = character->getBombs();
-        for (auto &bomb : bombVec) {
-            if (bomb->isPlaced() == false) {continue;}
-            if (bomb->checkTimerChange() == true) {continue;}
-            auto posBomb = bomb->getPos();
-            std::cout << "passed time explode NORMAL = " << bomb->getPassedTime() << std::endl;
-            if (_map[posBomb.x][posBomb.y].bombState == EXPLOSION5 && bomb->getPassedTime() > 8999) {
-                _map[posBomb.x][posBomb.y].bombState = EXPLOSION4;
-                std::cout << "passed time explode 4 = " << bomb->getPassedTime() << std::endl;
-                bomb->setPassedTime(0);
-            } else if (_map[posBomb.x][posBomb.y].bombState == EXPLOSION4 && bomb->getPassedTime() > 8999) {
-                _map[posBomb.x][posBomb.y].bombState = EXPLOSION3;
-                std::cout << "passed time explode 3 = " << bomb->getPassedTime() << std::endl;
-                bomb->setPassedTime(0);
-            } else if (_map[posBomb.x][posBomb.y].bombState == EXPLOSION3 && bomb->getPassedTime() > 8999) {
-                _map[posBomb.x][posBomb.y].bombState = EXPLOSION2;
-                std::cout << "passed time explode 2 = " << bomb->getPassedTime() << std::endl;
-                bomb->setPassedTime(0);
-            } else if (_map[posBomb.x][posBomb.y].bombState == EXPLOSION2 && bomb->getPassedTime() > 8999) {
-                _map[posBomb.x][posBomb.y].bombState = EXPLOSION1;
-                std::cout << "passed time explode 1 = " << bomb->getPassedTime() << std::endl;
-                bomb->setPassedTime(0);
-            } else if (_map[posBomb.x][posBomb.y].bombState == EXPLOSION1 && bomb->getPassedTime() > 8999) {
-                _map[posBomb.x][posBomb.y].bombState == NO;
-                dropBomb(posBomb.x, posBomb.y, bomb->getExplosionRadius(), characters);
-                std::cout << "deleted !!" << std::endl;
-                character->deleteBomb(i);
-            } else
-                continue;
-            i++;
-        }
-    }
-    if (_bomb_drop == true && _compute == true) {
-        _bomb_drop = false;
-        _compute = false;
-        for (int i = 1; i < _size; i++) {
-            for (int y = 1; y < _size ; y++) {
-                if (_map[i][y].isBoom == true) {
-                    _map[i][y].isBoom = false;
-                }
-            }
-        }
-        return (_map);
-    }
-    if (_bomb_drop == true && _compute == false) {
-        _compute = true;
-        return (_map);
-    }
     return (_map);
-}
-
-
-void Map::dump()
-{
-    for (auto &line : _map) {
-        for (auto &cell : line) {
-            if (cell.bombState > 0) {std::cout << cell.bombState;}
-            // else if (cell.player != NO_PLAYER) std::cout << cell.player;
-            else if (cell.element == DESTRUCTIBLE_BOX) std::cout << "B";
-            else if (cell.element == INDESTRUCTIBLE_BOX) std::cout << "C";
-            else if (cell.element == WALL) std::cout << "W";
-            else if (cell.isBoom == true) std::cout << "E";
-            else std::cout << " ";
-        }
-        std::cout << "\n";
-    }
 }
 
 Map::~Map()
 {
 }
-
-// #include "Character.hpp"
-// #include "ICharacter.hpp"
-// #include <unistd.h>
-
-// int main (void)
-// {
-//     std::vector<Character *> players;
-
-//     players.push_back(new Character(Vector<unsigned int>(1,1), false));
-//     players.push_back(new Character(Vector<unsigned int>(1,15), false));
-//     players.push_back(new Character(Vector<unsigned int>(15,1), false));
-//     players.push_back(new Character(Vector<unsigned int>(15,15), false));
-
-//     Map map(16);
-//     // map.dump();
-//     // std::cout << map.dropBomb(4,5,0, players) << "\n";
-//     // std::cout << map.dropBomb(1,1,10, players) << "\n";
-//     players[0]->dropBomb();
-//     players[0]->dropBomb();
-
-//     std::cout << "true => " << true << "false => " << false << "\n";
-//     // for (auto bombvec : players[0]->getBombs()) {
-//     //     std::cout << "Isplaced => " << bombvec->isPlaced() << "\n";
-//     // }
-//     // for (auto bombvec : players[0]->getBombs()) {
-//     //     bombvec->place();
-//     // }
-//     // for (auto bombvec : players[0]->getBombs()) {
-//     //     std::cout << "Isplaced => " << bombvec->isPlaced() << "\n";
-//     // }
-//     auto bomb = players[0]->getBombs();
-//     std::cout << bomb.size();
-//     int i = 0;
-//     while (i < 7) {
-//         map.dump();
-//         map.update(players);
-//         map.update(players);
-//         map.dump();
-//         sleep(1);
-//         i++;
-//     }
-// }

@@ -1,14 +1,13 @@
 #ifndef GAME_HPP_
 #define GAME_HPP_
-#pragma comment(lib, "Irrlicht.lib")
 
 #include "IScene.hpp"
 #include "EventReceiver.hpp"
-//#include "cell.hpp"
-#include <stdlib.h>
-#include <vector>
 #include "ICharacter.hpp"
 #include "GameMusic.hpp"
+
+#include <stdlib.h>
+#include <vector>
 
 using namespace irr;
 
@@ -24,11 +23,9 @@ public:
     void displayPlayer();
 	void render(void);
 	void updateMap(std::vector<std::vector<cell_t>> map);
-	ISceneManager* draw_map(scene::ISceneManager* smgr, std::vector<std::vector<cell_t>> _map, int _size, video::IVideoDriver* driver);
     ISceneManager* Init_map(scene::ISceneManager* smgr, std::vector<std::vector<cell_t>> _map, int _size, video::IVideoDriver* driver);
     void MusicGame();
 
-    void waitBomb();
     int getButton() {
 		return 0;
 	}

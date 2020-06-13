@@ -24,4 +24,5 @@ set(
     template.hpp
     Vector.hpp
     Game.hpp
+    Win.hpp
 )

@@ -1,27 +1,28 @@
-#ifndef INTRO_HPP_
-#define INTRO_HPP_
+#ifndef WIN_HPP_
+#define WIN_HPP_
 
 #include "IScene.hpp"
 #include "EventReceiver.hpp"
 #include "GameMusic.hpp"
 
-class Intro : public IScene {
+class Win : public IScene {
     public:
-    Intro(IrrlichtDevice *, std::stack<IScene *> *);
-    ~Intro();
-    void init();
-    void render();
-    void MusicIntro();
-    void displayImage();
-    void InitStartButton();
-    void hoverIntroButton();
+    Win(IrrlichtDevice *, std::stack<IScene *> *);
+    ~Win();
 
-    void updateMap(__attribute__((unused)) std::vector<std::vector<cell_t>> map) {
+    void init();
+    void render(void);
+     void updateMap(__attribute__((unused)) std::vector<std::vector<cell_t>> map) {
     };
      ISceneManager* Init_map(__attribute__((unused)) scene::ISceneManager* smgr, __attribute__((unused)) std::vector<std::vector<cell_t>> _map, __attribute__((unused)) int _size, __attribute__((unused)) video::IVideoDriver* driver){
          return smgr;
     };
-    int getButton();
+
+    int getButton(){
+        return 0;
+    };
+
+    void waitBomb(){};
 
     IrrlichtDevice *getDevice(void) {
         return (_device);
@@ -64,6 +65,7 @@ class Intro : public IScene {
     void setSoundEngine(sf::Music *sound) {
         _soundEngine = sound;
     }
+
     private:
 
 	IrrlichtDevice 			*_device;
@@ -72,29 +74,17 @@ class Intro : public IScene {
 	IVideoDriver 			*_driver;
     sf::Music            *_soundEngine;
 	std::stack<IScene *> 	*_scenesStack;
-    GameMusic _music;
+     GameMusic _music;
 
     MyEventReceiver         *_eventReceiver;
     sf::Sound                  *_music_loop;
     ITexture                *_banner;
     ITexture                *_background;
-    ITexture                *_logo;
-    ITexture                *_lal;
-    ITexture                *_armand;
-    ITexture                *_camille;
-    ITexture                *_louis;
-    ITexture                *_jo;
-    ITexture                *_zoe;
-    ITexture                *_pres;
-    ITexture                *_pied;
-    ITexture                *_bomb;
-    ITexture                *_title;
-    ITexture                *_ent;
-    ITexture                *_t;
     SColor                  _empty_color;
 
     SAppContext             *context;
 
 };
+
 
 #endif

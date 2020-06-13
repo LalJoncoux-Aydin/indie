@@ -9,6 +9,7 @@ set(
     GameMusic.cpp
     Settings.cpp
     Game.cpp
+    Win.cpp
 )
 
 add_library(lib_graph ${GRAPH} ${HEADERS})

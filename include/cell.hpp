@@ -46,6 +46,7 @@ enum decor {
     INDESTRUCTIBLE_BOX = 2,
     DESTRUCTIBLE_BOX = 3,
     BROKEN_BOX = 4,
+    BURNING = 5,
 };
 
 typedef struct cell_s {

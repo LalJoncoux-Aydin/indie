@@ -5,6 +5,7 @@
 #include <iostream>
 #include <cstring>
 #include <vector>
+#include <memory>
 // Local libs
 #include "Vector.hpp"
 #include "cell.hpp"
@@ -20,13 +21,10 @@ class ICharacter
         virtual bool isDead() = 0;
         virtual void powerUp(PowerUp power) = 0;
         virtual void move(orientation face) = 0;
-        virtual bool dropBomb() = 0;
         virtual Vector<unsigned int> getPos() = 0;
         virtual orientation getOrientation() = 0;
         virtual void goToPrevPos() = 0;
-        virtual std::vector<Bomb*> getBombs() = 0;
-
-        virtual void deleteBomb(int index) = 0;
+        virtual std::shared_ptr<Bomb> getBombs() = 0;
 };
 
 // ENFANT
@@ -36,26 +34,14 @@ class Perso: public ICharacter
         Perso(Vector<unsigned int> pos, bool isIA) {
             _pos = pos;
             _isIa = isIA;
+            _currentBombs = std::make_shared<Bomb>();
         };
 
-        void die() {
-            _isDead = true;
-        };
         // Getters
         bool getIsIa() {return _isIa;};
         bool isDead() {return _isDead;}
         void powerUp(PowerUp power){};
         void move(orientation face){};
-        bool dropBomb(){
-            if (_maxBombs > _currentBombs.size()) {
-                std::cout << "yea" << std::endl;
-        //      Bomb &new_bomb(_bombRadius, _pos);
-                _currentBombs.push_back(new Bomb(_bombRadius, _pos));
-                std::cout << _currentBombs[0]->getTimeBeforeExplosion() << std::endl;
-                return (true);
-            }
-            return (false);
-        };
         unsigned int getMaxBombs() { return _maxBombs; };
         Vector<unsigned int> getPos() { return _pos; };
         orientation getOrientation() {
@@ -64,32 +50,26 @@ class Perso: public ICharacter
         void goToPrevPos() {
             _pos = _prevPos;
         };
-        std::vector<Bomb*> getBombs() {
+        std::shared_ptr<Bomb> getBombs() {
             return _currentBombs;
         };
-        void deleteBomb(int index) {
-            _currentBombs.erase(_currentBombs.begin() + (index - 1));
+
+        // Setters
+        void die() {
+            _isDead = true;
         };
 
         ~Perso() {};
 
 
         unsigned int _maxBombs;
-
-
         bool _isIa;
          Vector<unsigned int> _pos;
         bool _isDead = false;
-//        Vector<unsigned int> _pos;
         Vector<unsigned int> _prevPos;
-        std::vector<Bomb*> _currentBombs;
+        std::shared_ptr<Bomb> _currentBombs;
         orientation _orientation;
         unsigned int _bombRadius;
-
-
-
-    protected:
-       // bool _isIa;
 };
 
 class Player: public Perso
@@ -104,17 +84,14 @@ class Player: public Perso
     void powerUp(PowerUp power);
 
     void move(orientation face);
-    bool dropBomb();
 
     // setters
 
     ~Player() {};
 
     private:
-        //std::vector<Bomb*> _currentBombs;
         orientation _orientation;
         unsigned int _maxBombs;
-        //unsigned int _bombRadius;
         unsigned int _speed;
 };
 
@@ -124,11 +101,9 @@ class IA: public Perso
     IA(Vector<unsigned int> pos, bool isIA);
     //  virtual void powerUp(PowerUp power) = 0;
     void move(orientation face);
-    bool dropBomb() ;
     ~IA(){}
-    private:
+  private:
     orientation _orientation;
-    //unsigned int _bombRadius;
 
 };
 
