@@ -12,18 +12,54 @@ Game::Game(IrrlichtDevice *device, sf::Music *sound, std::stack<IScene *> *stack
 	//MusicGame();
 }
 
+void Game::initMenuButton()
+{
+    IGUIButton *Menu = _guiEnv->addButton(rect<s32>(187,937,400,1000), 0, GUI_ID_INTRO, L"", L"Go in game");
+    video::ITexture *textuPlay = _driver->getTexture("./assets/images/button_menu2.png");
+  	Menu->setUseAlphaChannel(true);
+  	Menu->setDrawBorder(false);
+	Menu->setImage(textuPlay);
+}
+
+void Game::initRestartButton()
+{
+    IGUIButton *Restart = _guiEnv->addButton(rect<s32>(1587,937,1800,1000), 0, GUI_ID_START_BUTTON, L"", L"Go in game");
+    video::ITexture *textuPlay = _driver->getTexture("./assets/images/button_save-game.png");
+  	Restart->setUseAlphaChannel(true);
+  	Restart->setDrawBorder(false);
+	Restart->setImage(textuPlay);
+}
+
 void Game::init() {
 		_sceneManager->clear();
 		_guiEnv->clear();
 		_background = _driver->getTexture("./assets/images/ground.png");
 		_empty_color.set(255, 255, 255, 255);
 
+
+	//initMenuButton();
+	//	initRestartButton();
 		// create device
 		ICameraSceneNode* camera = _sceneManager->addCameraSceneNode(0, vector3df(0,0,-27), vector3df(0,0,0));
 		irr::gui::IGUIEnvironment *gui = _device->getGUIEnvironment();
 		irr::gui::IGUIStaticText *texte = _guiEnv->addStaticText(L"SCORE :",
 		irr::core::rect<irr::s32>(0,0,150,40), true, true, 0, -1, true);
 		irr::gui::IGUIFont *font = _guiEnv->getFont("../../assets/WRESTLEMANIA.ttf");  // chargement de la police
+
+	context = new SAppContext;
+    if (context) {
+        context->device = this->getDevice();
+        context->counter = 0;
+    }
+    else
+        throw std::string(strerror(ENOMEM));
+
+    _eventReceiver = new MyEventReceiver(*context, _device, _soundEngine, _scenesStack, _music_loop);
+    if (_eventReceiver)
+        _device->setEventReceiver(_eventReceiver);
+    else
+        throw std::string(strerror(ENOMEM));
+
 }
 
 scene::ISceneManager* Game::Init_map(scene::ISceneManager* smgr, std::vector<std::vector<cell_t>> _map, int _size, video::IVideoDriver* driver)
@@ -239,6 +275,14 @@ void Game::updateMap(std::vector<std::vector<cell_t>> _map)
             }
         }
 	}
+}
+
+
+int Game::getButton()
+{
+    if (_eventReceiver->getStartStatus() == true)
+        return 1;
+    return 0;
 }
 
 void Game::render(void) {

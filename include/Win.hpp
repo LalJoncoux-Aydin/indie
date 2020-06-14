@@ -21,9 +21,7 @@ class WinPlayer : public IScene {
          return smgr;
     };
 
-    int getButton(){
-        return 0;
-    };
+    int getButton();
 
     void waitBomb(){};
 

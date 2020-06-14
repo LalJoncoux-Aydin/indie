@@ -20,8 +20,8 @@ class ICharacter
         virtual bool getIsIa() = 0;
         virtual bool isDead() = 0;
         virtual void powerUp(PowerUp power) = 0;
+        virtual void move(std::vector<std::vector<cell_t>> map) = 0;
         virtual void move(orientation face) = 0;
-        virtual void move() = 0;
         virtual Vector<unsigned int> getPos() = 0;
         virtual orientation getOrientation() = 0;
         virtual void goToPrevPos() = 0;
@@ -79,8 +79,8 @@ class Perso: public ICharacter
         };
 
         void powerUp(PowerUp power){};
+        void move(std::vector<std::vector<cell_t>> map){};
         void move(orientation face){};
-        void move(){};
 
         ~Perso() {};
 
@@ -101,7 +101,7 @@ class Player: public Perso
 
     // getters
     unsigned int getSpeed() { return _speed; };
-    void powerUp(PowerUp power);
+ //   void powerUp(PowerUp power);
 
     void move(orientation face);
 
@@ -123,11 +123,12 @@ class IA: public Perso
     unsigned int getSpeed() { return _speed; };
     //  virtual void powerUp(PowerUp power);
 
-    void move();
+    void move(std::vector<std::vector<cell_t>> map);
     ~IA(){}
   private:
         orientation _orientation;
         unsigned int _speed;
+        int last_direction = 0;
 
 };
 

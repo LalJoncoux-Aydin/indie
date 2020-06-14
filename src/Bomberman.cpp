@@ -144,12 +144,14 @@ void Bomberman::manageGame()
         } else if (direction_2 != 0) {
             indie_player[1]->move(orientation(direction_2));
         }
+    } else {
+        if (indie_player[1]->isDead() == false)
+            indie_player[1]->move(indie_map.getMap());
     }
-    // else {
-    //     indie_player[1]->move();
-    // }
-    // indie_player[2]->move();
-    // indie_player[3]->move();
+    if (indie_player[2]->isDead() == false)
+        indie_player[2]->move(indie_map.getMap());
+    if (indie_player[3]->isDead() == false)
+        indie_player[3]->move(indie_map.getMap());
     _scenesStack.top()->updateMap(indie_map.update(indie_player));
 }
 

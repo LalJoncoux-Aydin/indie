@@ -20,7 +20,7 @@ void WinPlayer::MusicWin()
 
 void WinPlayer::initMenuButton()
 {
-    IGUIButton *Menu = _guiEnv->addButton(rect<s32>(109,913,400,1000), 0, GUI_ID_START_BUTTON, L"", L"Go in game");
+    IGUIButton *Menu = _guiEnv->addButton(rect<s32>(109,913,400,1000), 0, GUI_ID_INTRO, L"", L"Go in game");
     video::ITexture *textuPlay = _driver->getTexture("./assets/images/button_menu.png");
   	Menu->setUseAlphaChannel(true);
   	Menu->setDrawBorder(false);
@@ -43,8 +43,8 @@ void WinPlayer::init()
     _background = _driver->getTexture("./assets/images/Player1win.png");
     _empty_color.set(255, 255, 255, 255);
 
-    initMenuButton();
-    initRestartButton();
+   // initMenuButton();
+    //initRestartButton();
 
     context = new SAppContext;
     if (context) {
@@ -61,6 +61,14 @@ void WinPlayer::init()
         throw std::string(strerror(ENOMEM));
 }
 
+
+int WinPlayer::getButton()
+{
+    if (_eventReceiver->getIntroStatus() == true)
+        return 1;
+    return 0;
+}
+
 void WinPlayer::render(void) {
 
     _driver->beginScene(true, true, video::SColor(0,255,255,255));
@@ -71,5 +79,5 @@ void WinPlayer::render(void) {
 
 WinPlayer::~WinPlayer()
 {
-    _music.stopMusic();
+   // _music.stopMusic();
 }

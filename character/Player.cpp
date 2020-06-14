@@ -27,12 +27,12 @@ void Player::move(orientation face)
         _pos.y++;
 }
 
-void Player::powerUp(PowerUp power)
-{
-    if (power == SPEED) {
-        _speed++;
-    }
-    if (power == BOMB_RADIUS) {
-        _bombRadius++;
-    }
-}
+// void Player::powerUp(PowerUp power)
+// {
+//     if (power == SPEED) {
+//         _speed++;
+//     }
+//     if (power == BOMB_RADIUS) {
+//         _bombRadius++;
+//     }
+// }

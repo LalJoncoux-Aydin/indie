@@ -174,5 +174,5 @@ void Menu::render(void) {
 
 Menu::~Menu()
 {
-    _music.stopMusic();
+   // _music.stopMusic();
 }

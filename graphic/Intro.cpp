@@ -18,7 +18,7 @@ Intro::Intro(IrrlichtDevice *device, std::stack <IScene *> *stack)
 
 Intro::~Intro()
 {
-    _music.stopMusic();
+    //_music.stopMusic();
 }
 
 void Intro::MusicIntro()
@@ -231,8 +231,12 @@ void Intro::render(void) {
 
    // if (start > 2100000)
     //{
+
+   // if (_device->getTimer()->getTime() - time / 1000.f > 24300) {
         InitStartButton();
         hoverIntroButton();
+   // _driver->draw2DImage(_title, position2d<s32> (675, 700), rect<s32> (0,0,500,139), 0, _empty_color, true);
+    //}
     //}
     //system("pause");
     //timer();

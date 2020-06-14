@@ -19,6 +19,7 @@ public:
 	~Game();
 
 	void init();
+
     void initPlayer1(float x, float z);
     void initMenuButton();
     void initRestartButton();
@@ -31,9 +32,7 @@ public:
     void MusicExplosion();
     void MusicDeath();
 
-    int getButton() {
-		return 0;
-	}
+    int getButton();
 
     IrrlichtDevice *getDevice(void) {
         return (_device);
@@ -109,6 +108,8 @@ private:
 
   SAppContext             *context;
 	MyEventReceiver1				*receiver;
+        MyEventReceiver         *_eventReceiver;
+
 
     bool isDraw;
     bool isDrawPlayer;

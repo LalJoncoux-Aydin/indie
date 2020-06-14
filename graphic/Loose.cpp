@@ -45,8 +45,8 @@ void Loose::init()
     _empty_color.set(255, 255, 255, 255);
 
 
-    initRestartButton();
-    initMenuButton();
+   // initRestartButton();
+    //initMenuButton();
     context = new SAppContext;
     if (context) {
         context->device = this->getDevice();
@@ -72,5 +72,5 @@ void Loose::render(void) {
 
 Loose::~Loose()
 {
-    _music.stopMusic();
+    //_music.stopMusic();
 }

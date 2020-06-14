@@ -189,7 +189,7 @@ std::vector<std::vector<cell_t>> Map::update(std::vector<std::shared_ptr<ICharac
     int counter = 0;
     for (auto &character : characters) {
         if (character->isDead() == true)
-            continue;
+            break;
         auto pos = character->getPos();
         auto x = pos.x;
         auto y = pos.y;
@@ -255,15 +255,21 @@ std::vector<std::vector<cell_t>> Map::update(std::vector<std::shared_ptr<ICharac
                 bomb->setPlace(false);
                 if (!player_dead.empty()) {
                     for (int a = 0; a < player_dead.size(); a++) {
+                        std::cout << "a = " << a << std::endl;
+                        std::cout << "player dead size = " << player_dead.size() << std::endl;
                         if (player_dead[a] != 0) {
                             Vector<unsigned int> dead_pos = characters[player_dead[a] - 1]->getPos();
+                            std::cout << "hey" << std::endl;
                             characters[player_dead[a] - 1]->die();
+                            std::cout << "hey" << std::endl;
                             _map[dead_pos.x][dead_pos.y].isDeadBody = true;
+                            std::cout << "hey" << std::endl;
                         }
                     }
                 }
             }
         }
+        std::cout << "counter = " << counter << std::endl;
         counter++;
     }
     return (_map);

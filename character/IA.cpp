@@ -7,28 +7,66 @@ IA::IA(Vector<unsigned int> pos, bool isIa) : Perso{pos, isIa}// :  _pos (pos), 
     _bombRadius = 3;
 }
 
-void IA::move()
+static int checkBomb(std::vector<std::vector<cell_t>> map, unsigned int savedX, unsigned int savedY)
 {
-    // orientation face = WEST;
-    // if (face == NORTH)
-    //     _pos.x--;
-    // if (face == SOUTH)
-    //     _pos.x++;
-    // if (face == WEST)
-    //     _pos.y--;
-    // if (face == EAST)
-    _pos.y++;
+    for (int x = savedX; x > 0; x--) {
+        if (map[x][savedY].element == INDESTRUCTIBLE_BOX) {break;}
+        if (map[x][savedY].bombState != NO) {
+            return (1);
+        }
+    }
+    for (int x = savedX; map[x].size() < x; x++) {
+        if (map[x][savedY].element == INDESTRUCTIBLE_BOX) {break;}
+        if (map[x][savedY].bombState != NO) {
+            return (1);
+        }
+    }
+    for (int y = savedY; map[savedX].size() < y; y++) {
+        if (map[savedX][y].element == INDESTRUCTIBLE_BOX) {break;}
+        if (map[savedX][y].bombState != NO) {
+            return (1);
+        }
+    }
+    for (int y = savedY; y > 0; y++) {
+        if (map[savedX][y].element == INDESTRUCTIBLE_BOX) {break;}
+        if (map[savedX][y].bombState != NO) {
+            return (1);
+        }
+    }
+    return (0);
 }
-/*
-void Player::powerUp(PowerUp power)
+
+void IA::move(std::vector<std::vector<cell_t>> map)
 {
-    if (power == SPEED) {
-        _speed++;
+    if (checkBomb(map, _pos.x, _pos.y) == 0 && _currentBombs->isPlaced() == false) {
+        _currentBombs->setPos(_pos);
+        _currentBombs->setPlace(true);
+        _currentBombs->setExplosionRadius(_bombRadius);
+        _currentBombs->setTimePass();
     }
-    if (power == BOMB_NUMBER) {
-        _maxBombs++;
+    int direction = 0;
+    for (int i = 0; i < 3; i++) {
+        int wichOne = std::rand() % 3;
+        if (wichOne == 0 && map[_pos.x + 1][_pos.y].element == EMPTY && last_direction != 2) {
+            _pos.x++;
+            direction = 1;
+            break;
+        }
+        if (wichOne == 1 && map[_pos.x - 1][_pos.y].element == EMPTY && last_direction != 1) {
+            _pos.x--;
+            direction = 2;
+            break;
+        }
+        if (wichOne == 2 && map[_pos.x][_pos.y - 1].element == EMPTY && last_direction != 4) {
+            _pos.y--;
+            direction = 3;
+            break;
+        }
+        if (wichOne == 3 && map[_pos.x][_pos.y + 1].element == EMPTY && last_direction != 3) {
+            _pos.y++;
+            direction = 4;
+            break;
+        }
     }
-    if (power == BOMB_RADIUS) {
-        _bombRadius++;
-    }
-}*/
+    last_direction = direction;
+}
