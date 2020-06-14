@@ -158,13 +158,16 @@ class SaveLoad
         {
             std::vector<std::pair<std::string, std::string>> *player = new std::vector<std::pair<std::string, std::string>>();
 
+            player->push_back(std::pair<std::string, std::string>("_isIa", std::to_string(character->getIsIa())));
+            player->push_back(std::pair<std::string, std::string>("posX", std::to_string(character->getPos().x)));
+            player->push_back(std::pair<std::string, std::string>("posY", std::to_string(character->getPos().y)));
+            player->push_back(std::pair<std::string, std::string>("_isIa", std::to_string(character->isDead())));
             player->push_back(std::pair<std::string, std::string>("_getSpeed", std::to_string(character->getSpeed())));
             player->push_back(std::pair<std::string, std::string>("_bombRadius", std::to_string(character->getBombs()->getExplosionRadius())));
+            player->push_back(std::pair<std::string, std::string>("bomb_x", std::to_string(character->getBombs()->getPos().x)));
+            player->push_back(std::pair<std::string, std::string>("bomb_y", std::to_string(character->getBombs()->getPos().y)));
             player->push_back(std::pair<std::string, std::string>("_placed", std::to_string(character->getBombs()->isPlaced())));
             player->push_back(std::pair<std::string, std::string>("_time", std::to_string(character->getBombs()->getPassedTime())));
-            auto pos = character->getPos();
-            player->push_back(std::pair<std::string, std::string>("posX", std::to_string(pos.x)));
-            player->push_back(std::pair<std::string, std::string>("posY", std::to_string(pos.y)));
             return (player);
         };
 

@@ -13,7 +13,6 @@ Bomberman::Bomberman()
 
 void Bomberman::endGame()
 {
-    std::cout << "END GAME !" << std::endl;
     if (win_game == 1) {
         WinPlayer *_win = new WinPlayer(_device, &_scenesStack);
         _scenesStack.push(_win);
@@ -46,14 +45,14 @@ void Bomberman::initGame()
         std::shared_ptr<Player> player2 = std::make_shared<Player>(Vector<unsigned int>(1,1), false);
         indie_player.push_back(player2);
     } else {
-        std::shared_ptr<IA> player2 = std::make_shared<IA>(Vector<unsigned int>(1,1), false);
+        std::shared_ptr<IA> player2 = std::make_shared<IA>(Vector<unsigned int>(1,1), true);
         indie_player.push_back(player2);
     }
 
-    std::shared_ptr<IA> player3 = std::make_shared<IA>(Vector<unsigned int>(1,15), false);
+    std::shared_ptr<IA> player3 = std::make_shared<IA>(Vector<unsigned int>(1,15), true);
     indie_player.push_back(player3);
 
-    std::shared_ptr<IA> player4 = std::make_shared<IA>(Vector<unsigned int>(15,15), false);
+    std::shared_ptr<IA> player4 = std::make_shared<IA>(Vector<unsigned int>(15,15), true);
     indie_player.push_back(player4);
 }
 
@@ -188,9 +187,9 @@ void Bomberman::manageMenu()
         if (selection == 5)
             multi_player = true;
         initGame();
+        indie_map.initPlayer(indie_player);
         if (selection == 6)
             readJson("save.json");
-        indie_map.initPlayer(indie_player);
         _scenesStack.top()->Init_map(_scenesStack.top()->getSceneManager(), indie_map.getMap(), 16, _scenesStack.top()->getDriver());
     }
 }
@@ -259,6 +258,6 @@ void Bomberman::dumpJson(std::string file_name)
 
 Bomberman::~Bomberman()
 {
-    //dumpJson("save.json");
+    dumpJson("save.json");
   //  readJson("save.json");
 }
