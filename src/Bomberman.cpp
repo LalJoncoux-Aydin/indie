@@ -47,9 +47,6 @@ void Bomberman::initGame()
 
     std::shared_ptr<IA> player4 = std::make_shared<IA>(Vector<unsigned int>(15,15), false);
     indie_player.push_back(player4);
-
-    indie_map.initPlayer(indie_player);
-    _scenesStack.top()->Init_map(_scenesStack.top()->getSceneManager(), indie_map.getMap(), 16, _scenesStack.top()->getDriver());
 }
 
 int Bomberman::getKeyPlayer2()
@@ -163,7 +160,7 @@ void Bomberman::manageMenu()
         _scenesStack.top()->init();
         _oldScene = _scenesStack.top();
     }
-    if (selection == 4 || selection == 5) {
+    if (selection == 4 || selection == 5 || selection == 6) {
         Game *_game = new Game(_device, _soundEngine, &_scenesStack);
         _scenesStack.push(_game);
         _scenesStack.top()->init();
@@ -171,10 +168,14 @@ void Bomberman::manageMenu()
         run_menu = false;
         run_game = true;
         if (selection == 4)
-          multi_player = false;
+            multi_player = false;
         if (selection == 5)
-          multi_player = true;
+            multi_player = true;
         initGame();
+        if (selection == 6)
+            readJson("save.json");
+        indie_map.initPlayer(indie_player);
+        _scenesStack.top()->Init_map(_scenesStack.top()->getSceneManager(), indie_map.getMap(), 16, _scenesStack.top()->getDriver());
     }
 }
 

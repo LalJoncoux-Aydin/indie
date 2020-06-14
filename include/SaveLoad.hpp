@@ -57,10 +57,10 @@ class SaveLoad
             int x = 0;
             int y = 0;
 
-            matrix.resize(34);
-            for (; x < 32; x++) {
-                matrix[x].resize(34);
-                for (int y = 0; y < 32; y++) {
+            matrix.resize(17);
+            for (; x < 17; x++) {
+                matrix[x].resize(18);
+                for (int y = 0; y < 18; y++) {
                     for (pt::ptree::value_type &animal : iroot->get_child(buildName(x,y))) {
                         std::string name = animal.first;
                         if (strcmp(name.c_str(), "element") == 0) {

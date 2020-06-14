@@ -150,7 +150,7 @@ int Menu::getButton() {
         return 3;
 
     if (_eventReceiver->getStartStatus() == true)
-        return 4;
+        return 6;
     return 0;
 }
 

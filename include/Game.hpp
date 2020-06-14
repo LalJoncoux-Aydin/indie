@@ -100,6 +100,7 @@ private:
   sf::Sound                  *_music_loop;
   ITexture                *_banner;
   ITexture                *_background;
+  ITexture                *_blood;
   SColor                  _empty_color;
   float _x;
   float _y;
