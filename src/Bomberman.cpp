@@ -188,8 +188,9 @@ void Bomberman::manageMenu()
             multi_player = true;
         initGame();
         indie_map.initPlayer(indie_player);
-        if (selection == 6)
+        if (selection == 6) {
             readJson("save.json");
+        }
         _scenesStack.top()->Init_map(_scenesStack.top()->getSceneManager(), indie_map.getMap(), 16, _scenesStack.top()->getDriver());
     }
 }
@@ -231,8 +232,12 @@ void Bomberman::clear()
 void Bomberman::readJson(std::string file_name)
 {
     pt::ptree iroot;
-    pt::read_json(file_name, iroot);
+    std::ifstream ifile;
+    ifile.open("save.json");
+    if (!ifile)
+        return;
 
+    pt::read_json(file_name, iroot);
     indie_save.getPlayer(&iroot, "player1", indie_player[0]);
     indie_save.getPlayer(&iroot, "player2", indie_player[1]);
     indie_save.getPlayer(&iroot, "player3", indie_player[2]);

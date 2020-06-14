@@ -21,7 +21,9 @@ class Loose : public IScene {
          return smgr;
     };
 
-    int getButton(){};
+    int getButton(){
+        return 0;
+    };
 
     void waitBomb(){};
 
