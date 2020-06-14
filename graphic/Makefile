@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/harry/Documents/OOP_indie_studio_2019
+CMAKE_SOURCE_DIR = /home/harry/Documents/indie
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/harry/Documents/OOP_indie_studio_2019
+CMAKE_BINARY_DIR = /home/harry/Documents/indie
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,14 +80,14 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/harry/Documents/OOP_indie_studio_2019 && $(CMAKE_COMMAND) -E cmake_progress_start /home/harry/Documents/OOP_indie_studio_2019/CMakeFiles /home/harry/Documents/OOP_indie_studio_2019/graphic/CMakeFiles/progress.marks
-	cd /home/harry/Documents/OOP_indie_studio_2019 && $(MAKE) -f CMakeFiles/Makefile2 graphic/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/harry/Documents/OOP_indie_studio_2019/CMakeFiles 0
+	cd /home/harry/Documents/indie && $(CMAKE_COMMAND) -E cmake_progress_start /home/harry/Documents/indie/CMakeFiles /home/harry/Documents/indie/graphic/CMakeFiles/progress.marks
+	cd /home/harry/Documents/indie && $(MAKE) -f CMakeFiles/Makefile2 graphic/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/harry/Documents/indie/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/harry/Documents/OOP_indie_studio_2019 && $(MAKE) -f CMakeFiles/Makefile2 graphic/clean
+	cd /home/harry/Documents/indie && $(MAKE) -f CMakeFiles/Makefile2 graphic/clean
 .PHONY : clean
 
 # The main clean target
@@ -97,22 +97,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/harry/Documents/OOP_indie_studio_2019 && $(MAKE) -f CMakeFiles/Makefile2 graphic/preinstall
+	cd /home/harry/Documents/indie && $(MAKE) -f CMakeFiles/Makefile2 graphic/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/harry/Documents/OOP_indie_studio_2019 && $(MAKE) -f CMakeFiles/Makefile2 graphic/preinstall
+	cd /home/harry/Documents/indie && $(MAKE) -f CMakeFiles/Makefile2 graphic/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/harry/Documents/OOP_indie_studio_2019 && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/harry/Documents/indie && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 graphic/CMakeFiles/lib_graph.dir/rule:
-	cd /home/harry/Documents/OOP_indie_studio_2019 && $(MAKE) -f CMakeFiles/Makefile2 graphic/CMakeFiles/lib_graph.dir/rule
+	cd /home/harry/Documents/indie && $(MAKE) -f CMakeFiles/Makefile2 graphic/CMakeFiles/lib_graph.dir/rule
 .PHONY : graphic/CMakeFiles/lib_graph.dir/rule
 
 # Convenience name for target.
@@ -122,7 +122,7 @@ lib_graph: graphic/CMakeFiles/lib_graph.dir/rule
 
 # fast build rule for target.
 lib_graph/fast:
-	cd /home/harry/Documents/OOP_indie_studio_2019 && $(MAKE) -f graphic/CMakeFiles/lib_graph.dir/build.make graphic/CMakeFiles/lib_graph.dir/build
+	cd /home/harry/Documents/indie && $(MAKE) -f graphic/CMakeFiles/lib_graph.dir/build.make graphic/CMakeFiles/lib_graph.dir/build
 .PHONY : lib_graph/fast
 
 Game.o: Game.cpp.o
@@ -131,7 +131,7 @@ Game.o: Game.cpp.o
 
 # target to build an object file
 Game.cpp.o:
-	cd /home/harry/Documents/OOP_indie_studio_2019 && $(MAKE) -f graphic/CMakeFiles/lib_graph.dir/build.make graphic/CMakeFiles/lib_graph.dir/Game.cpp.o
+	cd /home/harry/Documents/indie && $(MAKE) -f graphic/CMakeFiles/lib_graph.dir/build.make graphic/CMakeFiles/lib_graph.dir/Game.cpp.o
 .PHONY : Game.cpp.o
 
 Game.i: Game.cpp.i
@@ -140,7 +140,7 @@ Game.i: Game.cpp.i
 
 # target to preprocess a source file
 Game.cpp.i:
-	cd /home/harry/Documents/OOP_indie_studio_2019 && $(MAKE) -f graphic/CMakeFiles/lib_graph.dir/build.make graphic/CMakeFiles/lib_graph.dir/Game.cpp.i
+	cd /home/harry/Documents/indie && $(MAKE) -f graphic/CMakeFiles/lib_graph.dir/build.make graphic/CMakeFiles/lib_graph.dir/Game.cpp.i
 .PHONY : Game.cpp.i
 
 Game.s: Game.cpp.s
@@ -149,7 +149,7 @@ Game.s: Game.cpp.s
 
 # target to generate assembly for a file
 Game.cpp.s:
-	cd /home/harry/Documents/OOP_indie_studio_2019 && $(MAKE) -f graphic/CMakeFiles/lib_graph.dir/build.make graphic/CMakeFiles/lib_graph.dir/Game.cpp.s
+	cd /home/harry/Documents/indie && $(MAKE) -f graphic/CMakeFiles/lib_graph.dir/build.make graphic/CMakeFiles/lib_graph.dir/Game.cpp.s
 .PHONY : Game.cpp.s
 
 GameMusic.o: GameMusic.cpp.o
@@ -158,7 +158,7 @@ GameMusic.o: GameMusic.cpp.o
 
 # target to build an object file
 GameMusic.cpp.o:
-	cd /home/harry/Documents/OOP_indie_studio_2019 && $(MAKE) -f graphic/CMakeFiles/lib_graph.dir/build.make graphic/CMakeFiles/lib_graph.dir/GameMusic.cpp.o
+	cd /home/harry/Documents/indie && $(MAKE) -f graphic/CMakeFiles/lib_graph.dir/build.make graphic/CMakeFiles/lib_graph.dir/GameMusic.cpp.o
 .PHONY : GameMusic.cpp.o
 
 GameMusic.i: GameMusic.cpp.i
@@ -167,7 +167,7 @@ GameMusic.i: GameMusic.cpp.i
 
 # target to preprocess a source file
 GameMusic.cpp.i:
-	cd /home/harry/Documents/OOP_indie_studio_2019 && $(MAKE) -f graphic/CMakeFiles/lib_graph.dir/build.make graphic/CMakeFiles/lib_graph.dir/GameMusic.cpp.i
+	cd /home/harry/Documents/indie && $(MAKE) -f graphic/CMakeFiles/lib_graph.dir/build.make graphic/CMakeFiles/lib_graph.dir/GameMusic.cpp.i
 .PHONY : GameMusic.cpp.i
 
 GameMusic.s: GameMusic.cpp.s
@@ -176,7 +176,7 @@ GameMusic.s: GameMusic.cpp.s
 
 # target to generate assembly for a file
 GameMusic.cpp.s:
-	cd /home/harry/Documents/OOP_indie_studio_2019 && $(MAKE) -f graphic/CMakeFiles/lib_graph.dir/build.make graphic/CMakeFiles/lib_graph.dir/GameMusic.cpp.s
+	cd /home/harry/Documents/indie && $(MAKE) -f graphic/CMakeFiles/lib_graph.dir/build.make graphic/CMakeFiles/lib_graph.dir/GameMusic.cpp.s
 .PHONY : GameMusic.cpp.s
 
 Help.o: Help.cpp.o
@@ -185,7 +185,7 @@ Help.o: Help.cpp.o
 
 # target to build an object file
 Help.cpp.o:
-	cd /home/harry/Documents/OOP_indie_studio_2019 && $(MAKE) -f graphic/CMakeFiles/lib_graph.dir/build.make graphic/CMakeFiles/lib_graph.dir/Help.cpp.o
+	cd /home/harry/Documents/indie && $(MAKE) -f graphic/CMakeFiles/lib_graph.dir/build.make graphic/CMakeFiles/lib_graph.dir/Help.cpp.o
 .PHONY : Help.cpp.o
 
 Help.i: Help.cpp.i
@@ -194,7 +194,7 @@ Help.i: Help.cpp.i
 
 # target to preprocess a source file
 Help.cpp.i:
-	cd /home/harry/Documents/OOP_indie_studio_2019 && $(MAKE) -f graphic/CMakeFiles/lib_graph.dir/build.make graphic/CMakeFiles/lib_graph.dir/Help.cpp.i
+	cd /home/harry/Documents/indie && $(MAKE) -f graphic/CMakeFiles/lib_graph.dir/build.make graphic/CMakeFiles/lib_graph.dir/Help.cpp.i
 .PHONY : Help.cpp.i
 
 Help.s: Help.cpp.s
@@ -203,7 +203,7 @@ Help.s: Help.cpp.s
 
 # target to generate assembly for a file
 Help.cpp.s:
-	cd /home/harry/Documents/OOP_indie_studio_2019 && $(MAKE) -f graphic/CMakeFiles/lib_graph.dir/build.make graphic/CMakeFiles/lib_graph.dir/Help.cpp.s
+	cd /home/harry/Documents/indie && $(MAKE) -f graphic/CMakeFiles/lib_graph.dir/build.make graphic/CMakeFiles/lib_graph.dir/Help.cpp.s
 .PHONY : Help.cpp.s
 
 Intro.o: Intro.cpp.o
@@ -212,7 +212,7 @@ Intro.o: Intro.cpp.o
 
 # target to build an object file
 Intro.cpp.o:
-	cd /home/harry/Documents/OOP_indie_studio_2019 && $(MAKE) -f graphic/CMakeFiles/lib_graph.dir/build.make graphic/CMakeFiles/lib_graph.dir/Intro.cpp.o
+	cd /home/harry/Documents/indie && $(MAKE) -f graphic/CMakeFiles/lib_graph.dir/build.make graphic/CMakeFiles/lib_graph.dir/Intro.cpp.o
 .PHONY : Intro.cpp.o
 
 Intro.i: Intro.cpp.i
@@ -221,7 +221,7 @@ Intro.i: Intro.cpp.i
 
 # target to preprocess a source file
 Intro.cpp.i:
-	cd /home/harry/Documents/OOP_indie_studio_2019 && $(MAKE) -f graphic/CMakeFiles/lib_graph.dir/build.make graphic/CMakeFiles/lib_graph.dir/Intro.cpp.i
+	cd /home/harry/Documents/indie && $(MAKE) -f graphic/CMakeFiles/lib_graph.dir/build.make graphic/CMakeFiles/lib_graph.dir/Intro.cpp.i
 .PHONY : Intro.cpp.i
 
 Intro.s: Intro.cpp.s
@@ -230,7 +230,7 @@ Intro.s: Intro.cpp.s
 
 # target to generate assembly for a file
 Intro.cpp.s:
-	cd /home/harry/Documents/OOP_indie_studio_2019 && $(MAKE) -f graphic/CMakeFiles/lib_graph.dir/build.make graphic/CMakeFiles/lib_graph.dir/Intro.cpp.s
+	cd /home/harry/Documents/indie && $(MAKE) -f graphic/CMakeFiles/lib_graph.dir/build.make graphic/CMakeFiles/lib_graph.dir/Intro.cpp.s
 .PHONY : Intro.cpp.s
 
 Loose.o: Loose.cpp.o
@@ -239,7 +239,7 @@ Loose.o: Loose.cpp.o
 
 # target to build an object file
 Loose.cpp.o:
-	cd /home/harry/Documents/OOP_indie_studio_2019 && $(MAKE) -f graphic/CMakeFiles/lib_graph.dir/build.make graphic/CMakeFiles/lib_graph.dir/Loose.cpp.o
+	cd /home/harry/Documents/indie && $(MAKE) -f graphic/CMakeFiles/lib_graph.dir/build.make graphic/CMakeFiles/lib_graph.dir/Loose.cpp.o
 .PHONY : Loose.cpp.o
 
 Loose.i: Loose.cpp.i
@@ -248,7 +248,7 @@ Loose.i: Loose.cpp.i
 
 # target to preprocess a source file
 Loose.cpp.i:
-	cd /home/harry/Documents/OOP_indie_studio_2019 && $(MAKE) -f graphic/CMakeFiles/lib_graph.dir/build.make graphic/CMakeFiles/lib_graph.dir/Loose.cpp.i
+	cd /home/harry/Documents/indie && $(MAKE) -f graphic/CMakeFiles/lib_graph.dir/build.make graphic/CMakeFiles/lib_graph.dir/Loose.cpp.i
 .PHONY : Loose.cpp.i
 
 Loose.s: Loose.cpp.s
@@ -257,7 +257,7 @@ Loose.s: Loose.cpp.s
 
 # target to generate assembly for a file
 Loose.cpp.s:
-	cd /home/harry/Documents/OOP_indie_studio_2019 && $(MAKE) -f graphic/CMakeFiles/lib_graph.dir/build.make graphic/CMakeFiles/lib_graph.dir/Loose.cpp.s
+	cd /home/harry/Documents/indie && $(MAKE) -f graphic/CMakeFiles/lib_graph.dir/build.make graphic/CMakeFiles/lib_graph.dir/Loose.cpp.s
 .PHONY : Loose.cpp.s
 
 Menu.o: Menu.cpp.o
@@ -266,7 +266,7 @@ Menu.o: Menu.cpp.o
 
 # target to build an object file
 Menu.cpp.o:
-	cd /home/harry/Documents/OOP_indie_studio_2019 && $(MAKE) -f graphic/CMakeFiles/lib_graph.dir/build.make graphic/CMakeFiles/lib_graph.dir/Menu.cpp.o
+	cd /home/harry/Documents/indie && $(MAKE) -f graphic/CMakeFiles/lib_graph.dir/build.make graphic/CMakeFiles/lib_graph.dir/Menu.cpp.o
 .PHONY : Menu.cpp.o
 
 Menu.i: Menu.cpp.i
@@ -275,7 +275,7 @@ Menu.i: Menu.cpp.i
 
 # target to preprocess a source file
 Menu.cpp.i:
-	cd /home/harry/Documents/OOP_indie_studio_2019 && $(MAKE) -f graphic/CMakeFiles/lib_graph.dir/build.make graphic/CMakeFiles/lib_graph.dir/Menu.cpp.i
+	cd /home/harry/Documents/indie && $(MAKE) -f graphic/CMakeFiles/lib_graph.dir/build.make graphic/CMakeFiles/lib_graph.dir/Menu.cpp.i
 .PHONY : Menu.cpp.i
 
 Menu.s: Menu.cpp.s
@@ -284,7 +284,7 @@ Menu.s: Menu.cpp.s
 
 # target to generate assembly for a file
 Menu.cpp.s:
-	cd /home/harry/Documents/OOP_indie_studio_2019 && $(MAKE) -f graphic/CMakeFiles/lib_graph.dir/build.make graphic/CMakeFiles/lib_graph.dir/Menu.cpp.s
+	cd /home/harry/Documents/indie && $(MAKE) -f graphic/CMakeFiles/lib_graph.dir/build.make graphic/CMakeFiles/lib_graph.dir/Menu.cpp.s
 .PHONY : Menu.cpp.s
 
 Settings.o: Settings.cpp.o
@@ -293,7 +293,7 @@ Settings.o: Settings.cpp.o
 
 # target to build an object file
 Settings.cpp.o:
-	cd /home/harry/Documents/OOP_indie_studio_2019 && $(MAKE) -f graphic/CMakeFiles/lib_graph.dir/build.make graphic/CMakeFiles/lib_graph.dir/Settings.cpp.o
+	cd /home/harry/Documents/indie && $(MAKE) -f graphic/CMakeFiles/lib_graph.dir/build.make graphic/CMakeFiles/lib_graph.dir/Settings.cpp.o
 .PHONY : Settings.cpp.o
 
 Settings.i: Settings.cpp.i
@@ -302,7 +302,7 @@ Settings.i: Settings.cpp.i
 
 # target to preprocess a source file
 Settings.cpp.i:
-	cd /home/harry/Documents/OOP_indie_studio_2019 && $(MAKE) -f graphic/CMakeFiles/lib_graph.dir/build.make graphic/CMakeFiles/lib_graph.dir/Settings.cpp.i
+	cd /home/harry/Documents/indie && $(MAKE) -f graphic/CMakeFiles/lib_graph.dir/build.make graphic/CMakeFiles/lib_graph.dir/Settings.cpp.i
 .PHONY : Settings.cpp.i
 
 Settings.s: Settings.cpp.s
@@ -311,7 +311,7 @@ Settings.s: Settings.cpp.s
 
 # target to generate assembly for a file
 Settings.cpp.s:
-	cd /home/harry/Documents/OOP_indie_studio_2019 && $(MAKE) -f graphic/CMakeFiles/lib_graph.dir/build.make graphic/CMakeFiles/lib_graph.dir/Settings.cpp.s
+	cd /home/harry/Documents/indie && $(MAKE) -f graphic/CMakeFiles/lib_graph.dir/build.make graphic/CMakeFiles/lib_graph.dir/Settings.cpp.s
 .PHONY : Settings.cpp.s
 
 Win.o: Win.cpp.o
@@ -320,7 +320,7 @@ Win.o: Win.cpp.o
 
 # target to build an object file
 Win.cpp.o:
-	cd /home/harry/Documents/OOP_indie_studio_2019 && $(MAKE) -f graphic/CMakeFiles/lib_graph.dir/build.make graphic/CMakeFiles/lib_graph.dir/Win.cpp.o
+	cd /home/harry/Documents/indie && $(MAKE) -f graphic/CMakeFiles/lib_graph.dir/build.make graphic/CMakeFiles/lib_graph.dir/Win.cpp.o
 .PHONY : Win.cpp.o
 
 Win.i: Win.cpp.i
@@ -329,7 +329,7 @@ Win.i: Win.cpp.i
 
 # target to preprocess a source file
 Win.cpp.i:
-	cd /home/harry/Documents/OOP_indie_studio_2019 && $(MAKE) -f graphic/CMakeFiles/lib_graph.dir/build.make graphic/CMakeFiles/lib_graph.dir/Win.cpp.i
+	cd /home/harry/Documents/indie && $(MAKE) -f graphic/CMakeFiles/lib_graph.dir/build.make graphic/CMakeFiles/lib_graph.dir/Win.cpp.i
 .PHONY : Win.cpp.i
 
 Win.s: Win.cpp.s
@@ -338,7 +338,7 @@ Win.s: Win.cpp.s
 
 # target to generate assembly for a file
 Win.cpp.s:
-	cd /home/harry/Documents/OOP_indie_studio_2019 && $(MAKE) -f graphic/CMakeFiles/lib_graph.dir/build.make graphic/CMakeFiles/lib_graph.dir/Win.cpp.s
+	cd /home/harry/Documents/indie && $(MAKE) -f graphic/CMakeFiles/lib_graph.dir/build.make graphic/CMakeFiles/lib_graph.dir/Win.cpp.s
 .PHONY : Win.cpp.s
 
 WinMulti.o: WinMulti.cpp.o
@@ -347,7 +347,7 @@ WinMulti.o: WinMulti.cpp.o
 
 # target to build an object file
 WinMulti.cpp.o:
-	cd /home/harry/Documents/OOP_indie_studio_2019 && $(MAKE) -f graphic/CMakeFiles/lib_graph.dir/build.make graphic/CMakeFiles/lib_graph.dir/WinMulti.cpp.o
+	cd /home/harry/Documents/indie && $(MAKE) -f graphic/CMakeFiles/lib_graph.dir/build.make graphic/CMakeFiles/lib_graph.dir/WinMulti.cpp.o
 .PHONY : WinMulti.cpp.o
 
 WinMulti.i: WinMulti.cpp.i
@@ -356,7 +356,7 @@ WinMulti.i: WinMulti.cpp.i
 
 # target to preprocess a source file
 WinMulti.cpp.i:
-	cd /home/harry/Documents/OOP_indie_studio_2019 && $(MAKE) -f graphic/CMakeFiles/lib_graph.dir/build.make graphic/CMakeFiles/lib_graph.dir/WinMulti.cpp.i
+	cd /home/harry/Documents/indie && $(MAKE) -f graphic/CMakeFiles/lib_graph.dir/build.make graphic/CMakeFiles/lib_graph.dir/WinMulti.cpp.i
 .PHONY : WinMulti.cpp.i
 
 WinMulti.s: WinMulti.cpp.s
@@ -365,7 +365,7 @@ WinMulti.s: WinMulti.cpp.s
 
 # target to generate assembly for a file
 WinMulti.cpp.s:
-	cd /home/harry/Documents/OOP_indie_studio_2019 && $(MAKE) -f graphic/CMakeFiles/lib_graph.dir/build.make graphic/CMakeFiles/lib_graph.dir/WinMulti.cpp.s
+	cd /home/harry/Documents/indie && $(MAKE) -f graphic/CMakeFiles/lib_graph.dir/build.make graphic/CMakeFiles/lib_graph.dir/WinMulti.cpp.s
 .PHONY : WinMulti.cpp.s
 
 # Help Target
@@ -415,6 +415,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/harry/Documents/OOP_indie_studio_2019 && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/harry/Documents/indie && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

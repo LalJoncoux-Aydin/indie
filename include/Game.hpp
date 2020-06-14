@@ -20,6 +20,8 @@ public:
 
 	void init();
     void initPlayer1(float x, float z);
+    void initMenuButton();
+    void initRestartButton();
     void displayPlayer();
 	void render(void);
 	void updateMap(std::vector<std::vector<cell_t>> map);

@@ -7,8 +7,34 @@ WinMulti::WinMulti(IrrlichtDevice *device, std::stack<IScene *> *stack)
     _guiEnv = _device->getGUIEnvironment();
     _driver = _device->getVideoDriver();
     _scenesStack = stack;
+    MusicWin();
 }
 
+void WinMulti::MusicWin()
+{
+    _music.setMusic("./assets/music/Win.wav");
+    _music.musicsetVolume(10);
+    _music.musicsetLoop(false);
+}
+
+
+void WinMulti::initMenuButton()
+{
+    IGUIButton *Menu = _guiEnv->addButton(rect<s32>(109,913,400,1000), 0, GUI_ID_START_BUTTON, L"", L"Go in game");
+    video::ITexture *textuPlay = _driver->getTexture("./assets/images/button_menu.png");
+  	Menu->setUseAlphaChannel(true);
+  	Menu->setDrawBorder(false);
+	Menu->setImage(textuPlay);
+}
+
+void WinMulti::initRestartButton()
+{
+    IGUIButton *Restart = _guiEnv->addButton(rect<s32>(1510,915,1800,1000), 0, GUI_ID_START_BUTTON, L"", L"Go in game");
+    video::ITexture *textuPlay = _driver->getTexture("./assets/images/button_restart.png");
+  	Restart->setUseAlphaChannel(true);
+  	Restart->setDrawBorder(false);
+	Restart->setImage(textuPlay);
+}
 
 void WinMulti::init()
 {
@@ -17,6 +43,9 @@ void WinMulti::init()
     _background = _driver->getTexture("./assets/images/Player2Win.jpg");
     _empty_color.set(255, 255, 255, 255);
 
+
+    initRestartButton();
+    initMenuButton();
     context = new SAppContext;
     if (context) {
         context->device = this->getDevice();
@@ -42,4 +71,5 @@ void WinMulti::render(void) {
 
 WinMulti::~WinMulti()
 {
+    _music.stopMusic();
 }

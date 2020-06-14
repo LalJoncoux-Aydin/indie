@@ -11,6 +11,10 @@ class WinMulti : public IScene {
     ~WinMulti();
 
     void init();
+    void initMenuButton();
+    void initRestartButton();
+    void MusicWin();
+
     void render(void);
      void updateMap(__attribute__((unused)) std::vector<std::vector<cell_t>> map) {
     };

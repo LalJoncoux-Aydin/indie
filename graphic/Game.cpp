@@ -33,10 +33,8 @@ scene::ISceneManager* Game::Init_map(scene::ISceneManager* smgr, std::vector<std
         for (int x = 0; x <= _size; ++x) {
             int temp_x = -14 + (x - 1) * 2;
 
-
             // Walls
-            if (_map[y][x].element == INDESTRUCTIBLE_BOX || _map[y][x].element == DESTRUCTIBLE_BOX || _map[y][x].element == WALL ||
-				_map[y][x].powerup == BOMB_RADIUS || _map[y][x].powerup == SPEED) {
+            if (_map[y][x].element == INDESTRUCTIBLE_BOX || _map[y][x].element == DESTRUCTIBLE_BOX || _map[y][x].element == WALL) {
 
 					scene::ISceneNode* node = 0;
 
@@ -49,10 +47,6 @@ scene::ISceneManager* Game::Init_map(scene::ISceneManager* smgr, std::vector<std
                         temp->setMaterialTexture(0, driver->getTexture("./assets/images/rockwall.jpg"));
                     else if (_map[y][x].element == INDESTRUCTIBLE_BOX)
                         temp->setMaterialTexture(0, driver->getTexture("./assets/images/lale.jpg"));
-					else if (_map[y][x].powerup == BOMB_RADIUS)
-						temp->setMaterialTexture(0, _driver->getTexture("./assets/images/Black.jpg"));
-					else if (_map[y][x].powerup == SPEED)
-						temp->setMaterialTexture(0, _driver->getTexture("./assets/images/Speed.jpg"));
                     else if (_map[y][x].element == WALL)
                         temp->setMaterialTexture(0, driver->getTexture("./assets/images/momo.jpg"));
                     temp->setMaterialFlag(video::EMF_LIGHTING, true);
@@ -61,20 +55,6 @@ scene::ISceneManager* Game::Init_map(scene::ISceneManager* smgr, std::vector<std
                     temp->setRotation(irr::core::vector3df(0, 0, 0));
 
 			}
-
-			/*if (_map[y][x].powerup == BOMB_RADIUS) {
-                temp->setMaterialTexture(0, _driver->getTexture("./assets/images/Black.jpg"));
-            }
-			if (_map[y][x].powerup == SPEED) {
-                temp->setMaterialTexture(0, _driver->getTexture("./assets/images/Speed.jpg"));
-			} else if ((_map[y][x].powerup == BOMB_RADIUS || _map[y][x].powerup == SPEED) && _map[y][x].player != NO_PLAYER) {
-				temp2->setVisible(false);
-			}
-                temp2->setMaterialFlag(video::EMF_LIGHTING, true);
-                temp2->setPosition(irr::core::vector3df(temp_x, temp_y, 1.5));//(doite/gauche, haut/bas, profondeur)
-				temp2->setScale(irr::core::vector3df(0.2, 0.2, 0.2));
-            	temp2->setRotation(irr::core::vector3df(0, 0, 0));*/
-
             // PLAYER
 
 			else if (_map[y][x].player == PLAYER1) {
@@ -153,23 +133,27 @@ void Game::MusicDeath()
 
 void Game::updateMap(std::vector<std::vector<cell_t>> _map)
 {
-    int size = 16;
-    for (int y = 0; (y + 1) <= size; ++y) {
+    for (int y = 0; y <= 16; ++y) {
         int temp_y = 14 - (y - 1) * 2;
-        for (int x = 0; (x + 1) <= size; ++x) {
+        for (int x = 0; x <= 16; ++x) {
             int temp_x = -14 + (x - 1) * 2;
 
             // Walls
             if (_map[y][x].element == BROKEN_BOX) {
-                if (!cubes.empty()) {
-                    for (int i = 0; i < cubes.size(); i++) {
-                        irr::core::vector3df test = cubes[i]->getPosition();
-                        if (test == irr::core::vector3df(temp_x,temp_y,1.5)) {
-                            cubes[i]->setVisible(false);
-                        }
+                for (int i = 0; cubes[i]; i++) {
+                    irr::core::vector3df test = cubes[i]->getPosition();
+                    if (test == irr::core::vector3df(temp_x,temp_y,1.5)) {
+                        cubes[i]->setVisible(false);
                     }
+					if (_map[y][x].element == BURNING) {
+					cubes[i]->setMaterialTexture(0, _driver->getTexture("./assets/model3D/Explosion.jpg"));
+            }
                 }
             }
+			//scene::ISceneNode* temp = _sceneManager->addCubeSceneNode();
+
+            // CAMILLE CODE ICI
+
 
            // Dead or life
             if (_map[y][x].isDeadBody == true) {
@@ -186,54 +170,70 @@ void Game::updateMap(std::vector<std::vector<cell_t>> _map)
 					MusicDeath();
     				_Player4->setVisible(false);
     			}
-            } else {
-               // std::cout << "is not dead body" << std::endl;
-                // PLAYER
-                if (_map[y][x].player == PLAYER1) {
-    				_Player1->setPosition(irr::core::vector3df(temp_x,temp_y,1.5));
-    			} else if (_map[y][x].player == PLAYER2) {
-    				_Player2->setPosition(irr::core::vector3df(temp_x,temp_y,1.5));
-    			} else if (_map[y][x].player == PLAYER3) {
-    				_Player3->setPosition(irr::core::vector3df(temp_x,temp_y,1.5));
-    			} else if (_map[y][x].player == PLAYER4) {
-    				_Player4->setPosition(irr::core::vector3df(temp_x,temp_y,1.5));
-    			}
             }
+            // PLAYER
+            if (_map[y][x].player == PLAYER1) {
+				_Player1->setPosition(irr::core::vector3df(temp_x,temp_y,1.5));
+			} else if (_map[y][x].player == PLAYER2) {
+				_Player2->setPosition(irr::core::vector3df(temp_x,temp_y,1.5));
+			} else if (_map[y][x].player == PLAYER3) {
+				_Player3->setPosition(irr::core::vector3df(temp_x,temp_y,1.5));
+			} else if (_map[y][x].player == PLAYER4) {
+				_Player4->setPosition(irr::core::vector3df(temp_x,temp_y,1.5));
+			}
 
-            if (_map[y][x].element == BOMB_PLACE && _map[y][x].bombState != NO) {
-        		MusicTimer();
-                IMeshSceneNode *_bombe = _sceneManager->addSphereSceneNode(0.8);
-                _bombe->setVisible(false);
-            	_bombe->setMaterialTexture(0, _driver->getTexture("./assets/model3D/rouge.jpg"));
-                _bombe->setVisible(true);
-                _bombe->setPosition(irr::core::vector3df(temp_x,temp_y,1.5));
-                list_bomb.push_back(_bombe);
-            } else if (_map[y][x].element != BOMB_PLACE && _map[y][x].bombState != NO) {
-                for(int it = 0; it < list_bomb.size(); it++) {
-                    irr::core::vector3df temp_bomb_pos = list_bomb[it]->getPosition();
-                    if (temp_bomb_pos == irr::core::vector3df(temp_x,temp_y,1.5)) {
-                        if (_map[y][x].bombState == HAS_EXPLODED) {
-                            list_bomb.erase(list_bomb.begin());
-                            continue;
+            // Bombes
+            if (_map[y][x].bombState != NO) {
+
+                if (list_bomb.empty()) {
+					MusicTimer();
+
+                    IMeshSceneNode *_bombe = _sceneManager->addSphereSceneNode(0.8);
+                    _bombe->setVisible(false);
+        			_bombe->setMaterialTexture(0, _driver->getTexture("./assets/model3D/rouge.jpg"));
+        			_bombe->setVisible(true);
+        			_bombe->setPosition(irr::core::vector3df(temp_x,temp_y,1.5));
+                    list_bomb.push_back(_bombe);
+
+                } else {
+                    bool new_bomb = false;
+                    for(int it = 0; it < list_bomb.size(); it++) {
+                        irr::core::vector3df temp_bomb_pos = list_bomb[it]->getPosition();
+                        if (temp_bomb_pos == irr::core::vector3df(temp_x,temp_y,1.5)) {
+                            new_bomb = true;
+                            if (_map[y][x].bombState == HAS_EXPLODED) {
+                                list_bomb.erase(list_bomb.begin());
+                            }
+                			if (_map[y][x].bombState == EXPLOSION1) {
+																		//MusicExplosion();
+
+                				list_bomb[it]->setMaterialTexture(0, _driver->getTexture("./assets/model3D/rouge.jpg"));
+                				list_bomb[it]->setVisible(false);
+                				list_bomb[it]->setPosition(irr::core::vector3df(temp_x,temp_y,1.5));
+                			} if (_map[y][x].bombState == EXPLOSION2) {
+                				list_bomb[it]->setMaterialTexture(0, _driver->getTexture("./assets/model3D/Explosion.jpg"));
+                				list_bomb[it]->setVisible(true);
+                				list_bomb[it]->setPosition(irr::core::vector3df(temp_x,temp_y,1.5));
+                			} 	if (_map[y][x].bombState == EXPLOSION3) {
+                				list_bomb[it]->setMaterialTexture(0, _driver->getTexture("./assets/model3D/rouge.jpg"));
+                				list_bomb[it]->setVisible(true);
+                				list_bomb[it]->setPosition(irr::core::vector3df(temp_x,temp_y,1.5));
+                			} 	if (_map[y][x].bombState == EXPLOSION4) {
+                				list_bomb[it]->setMaterialTexture(0, _driver->getTexture("./assets/model3D/BlackBomb.jpg"));
+                				list_bomb[it]->setVisible(true);
+                				list_bomb[it]->setPosition(irr::core::vector3df(temp_x,temp_y,1.5));
+                			}
+                            break;
                         }
-                   	    if (_map[y][x].bombState == EXPLOSION1) {
-        					//MusicExplosion();
-                    	    list_bomb[it]->setMaterialTexture(0, _driver->getTexture("./assets/model3D/rouge.jpg"));
-                        	list_bomb[it]->setVisible(false);
-                        	list_bomb[it]->setPosition(irr::core::vector3df(temp_x,temp_y,1.5));
-                        } if (_map[y][x].bombState == EXPLOSION2) {
-                        	list_bomb[it]->setMaterialTexture(0, _driver->getTexture("./assets/model3D/Explosion.jpg"));
-                        	list_bomb[it]->setVisible(true);
-                        	list_bomb[it]->setPosition(irr::core::vector3df(temp_x,temp_y,1.5));
-                        } 	if (_map[y][x].bombState == EXPLOSION3) {
-                        	list_bomb[it]->setMaterialTexture(0, _driver->getTexture("./assets/model3D/rouge.jpg"));
-                        	list_bomb[it]->setVisible(true);
-                        	list_bomb[it]->setPosition(irr::core::vector3df(temp_x,temp_y,1.5));
-                        } 	if (_map[y][x].bombState == EXPLOSION4) {
-                            list_bomb[it]->setMaterialTexture(0, _driver->getTexture("./assets/model3D/BlackBomb.jpg"));
-                        	list_bomb[it]->setVisible(true);
-                        	list_bomb[it]->setPosition(irr::core::vector3df(temp_x,temp_y,1.5));
-                        }
+                    }
+                    if (new_bomb == false) {
+                            IMeshSceneNode *new_bombe = _sceneManager->addSphereSceneNode(0.8);
+                            new_bombe->setVisible(false);
+                			new_bombe->setMaterialTexture(0, _driver->getTexture("./assets/model3D/noir.jpg"));
+                			new_bombe->setVisible(true);
+                			new_bombe->setPosition(irr::core::vector3df(temp_x,temp_y,1.5));
+                            list_bomb.push_back(new_bombe);
+                            break;
                     }
                 }
             }
@@ -271,5 +271,5 @@ void Game::render(void) {
 
 Game::~Game()
 {
-//	_device->drop();
+	_device->drop();
 }

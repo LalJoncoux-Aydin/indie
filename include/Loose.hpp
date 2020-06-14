@@ -12,6 +12,9 @@ class Loose : public IScene {
 
     void init();
     void render(void);
+    void MusicLoose();
+    void initMenuButton();
+    void initRestartButton();
      void updateMap(__attribute__((unused)) std::vector<std::vector<cell_t>> map) {
     };
      ISceneManager* Init_map(__attribute__((unused)) scene::ISceneManager* smgr, __attribute__((unused)) std::vector<std::vector<cell_t>> _map, __attribute__((unused)) int _size, __attribute__((unused)) video::IVideoDriver* driver){

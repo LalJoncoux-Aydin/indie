@@ -13,29 +13,26 @@ Bomberman::Bomberman()
 
 void Bomberman::endGame()
 {
-    //std::cout << "END GAME !" << std::endl;
+    std::cout << "END GAME !" << std::endl;
     if (win_game == 1) {
-       // std::cout << "je" << std::endl;
         WinPlayer *_win = new WinPlayer(_device, &_scenesStack);
-        //std::cout << "suis" << std::endl;
         _scenesStack.push(_win);
-        //std::cout << "une" << std::endl;
-        _scenesStack.top()->init();
-        //std::cout << "pute" << std::endl;
-        _oldScene = _scenesStack.top();
-        //std::cout << "gentille" << std::endl;
-    }
-    /*if (win_game == 2) {
-        WinMulti *_winm = new WinMulti(_device, &_scenesStack);
-        _scenesStack.push(_winm);
         _scenesStack.top()->init();
         _oldScene = _scenesStack.top();
+        _scenesStack.top()->Init_map(_scenesStack.top()->getSceneManager(), indie_map.getMap(), 16, _scenesStack.top()->getDriver());
+    } else if (win_game == 2) {
+        WinMulti *_win = new WinMulti(_device, &_scenesStack);
+        _scenesStack.push(_win);
+        _scenesStack.top()->init();
+        _oldScene = _scenesStack.top();
+        _scenesStack.top()->Init_map(_scenesStack.top()->getSceneManager(), indie_map.getMap(), 16, _scenesStack.top()->getDriver());
     } else if (win_game == 3) {
         Loose *_loose = new Loose(_device, &_scenesStack);
         _scenesStack.push(_loose);
         _scenesStack.top()->init();
         _oldScene = _scenesStack.top();
-    }*/
+        _scenesStack.top()->Init_map(_scenesStack.top()->getSceneManager(), indie_map.getMap(), 16, _scenesStack.top()->getDriver());
+    }
 }
 
 void Bomberman::initGame()
@@ -94,24 +91,32 @@ int  Bomberman::getKeyPlayer1()
   return 0;
 }
 
+void Bomberman::manageEnd()
+{
+    _scenesStack.top()->updateMap(indie_map.update(indie_player));
+}
+
 void Bomberman::manageGame()
 {
     // WIN OR LOOSE ?
     if (indie_player[0]->isDead() == true) {
         run_game = false;
         win_game = 3;
+        endGame();
         return;
     }
     if (multi_player == true) {
         if (indie_player[2]->isDead() == true && indie_player[3]->isDead() == true) {
             run_game = false;
             win_game = 2;
+            endGame();
             return;
         }
     } else {
         if (indie_player[1]->isDead() == true && indie_player[2]->isDead() == true && indie_player[3]->isDead() == true) {
             run_game = false;
             win_game = 1;
+            endGame();
             return;
         }
     }
@@ -154,8 +159,8 @@ void Bomberman::manageMenu()
     int selection = _scenesStack.top()->getButton();
 
     if (selection == 1) {
-        Menu *mainMenu = new Menu(_device, &_scenesStack);
-        _scenesStack.push(mainMenu);
+        Menu *_menu = new Menu(_device, &_scenesStack);
+        _scenesStack.push(_menu);
         _scenesStack.top()->init();
 		_oldScene = _scenesStack.top();
     }
@@ -194,10 +199,6 @@ void Bomberman::scenesHandler()
 {
 	while (_device->run() && _scenesStack.top()->getDriver()) {
 
-        if (run_game == false && run_menu == true) {
-            endGame();
-        }
-
 		if (_oldScene != _scenesStack.top()) {
 		  _scenesStack.top()->init();
 		  _oldScene = _scenesStack.top();
@@ -208,6 +209,8 @@ void Bomberman::scenesHandler()
         } else {
             if (run_game == true)
                 manageGame();
+            if (run_game == false)
+                manageEnd();
         }
 	    _scenesStack.top()->render();
 	}
@@ -215,7 +218,7 @@ void Bomberman::scenesHandler()
 
 void Bomberman::clear()
 {
-	_device->drop();
+	//_device->drop();
 	//this->soundEngine->drop();
 
 	int size = _scenesStack.size();
@@ -256,7 +259,6 @@ void Bomberman::dumpJson(std::string file_name)
 
 Bomberman::~Bomberman()
 {
- //   std::cout << "hello" << std::endl;
-  //  dumpJson("save.json");
+    //dumpJson("save.json");
   //  readJson("save.json");
 }

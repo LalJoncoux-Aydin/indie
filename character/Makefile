@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/harry/Documents/OOP_indie_studio_2019
+CMAKE_SOURCE_DIR = /home/harry/Documents/indie
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/harry/Documents/OOP_indie_studio_2019
+CMAKE_BINARY_DIR = /home/harry/Documents/indie
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,14 +80,14 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/harry/Documents/OOP_indie_studio_2019 && $(CMAKE_COMMAND) -E cmake_progress_start /home/harry/Documents/OOP_indie_studio_2019/CMakeFiles /home/harry/Documents/OOP_indie_studio_2019/character/CMakeFiles/progress.marks
-	cd /home/harry/Documents/OOP_indie_studio_2019 && $(MAKE) -f CMakeFiles/Makefile2 character/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/harry/Documents/OOP_indie_studio_2019/CMakeFiles 0
+	cd /home/harry/Documents/indie && $(CMAKE_COMMAND) -E cmake_progress_start /home/harry/Documents/indie/CMakeFiles /home/harry/Documents/indie/character/CMakeFiles/progress.marks
+	cd /home/harry/Documents/indie && $(MAKE) -f CMakeFiles/Makefile2 character/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/harry/Documents/indie/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/harry/Documents/OOP_indie_studio_2019 && $(MAKE) -f CMakeFiles/Makefile2 character/clean
+	cd /home/harry/Documents/indie && $(MAKE) -f CMakeFiles/Makefile2 character/clean
 .PHONY : clean
 
 # The main clean target
@@ -97,22 +97,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/harry/Documents/OOP_indie_studio_2019 && $(MAKE) -f CMakeFiles/Makefile2 character/preinstall
+	cd /home/harry/Documents/indie && $(MAKE) -f CMakeFiles/Makefile2 character/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/harry/Documents/OOP_indie_studio_2019 && $(MAKE) -f CMakeFiles/Makefile2 character/preinstall
+	cd /home/harry/Documents/indie && $(MAKE) -f CMakeFiles/Makefile2 character/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/harry/Documents/OOP_indie_studio_2019 && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/harry/Documents/indie && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 character/CMakeFiles/lib_charac.dir/rule:
-	cd /home/harry/Documents/OOP_indie_studio_2019 && $(MAKE) -f CMakeFiles/Makefile2 character/CMakeFiles/lib_charac.dir/rule
+	cd /home/harry/Documents/indie && $(MAKE) -f CMakeFiles/Makefile2 character/CMakeFiles/lib_charac.dir/rule
 .PHONY : character/CMakeFiles/lib_charac.dir/rule
 
 # Convenience name for target.
@@ -122,7 +122,7 @@ lib_charac: character/CMakeFiles/lib_charac.dir/rule
 
 # fast build rule for target.
 lib_charac/fast:
-	cd /home/harry/Documents/OOP_indie_studio_2019 && $(MAKE) -f character/CMakeFiles/lib_charac.dir/build.make character/CMakeFiles/lib_charac.dir/build
+	cd /home/harry/Documents/indie && $(MAKE) -f character/CMakeFiles/lib_charac.dir/build.make character/CMakeFiles/lib_charac.dir/build
 .PHONY : lib_charac/fast
 
 Bomb.o: Bomb.cpp.o
@@ -131,7 +131,7 @@ Bomb.o: Bomb.cpp.o
 
 # target to build an object file
 Bomb.cpp.o:
-	cd /home/harry/Documents/OOP_indie_studio_2019 && $(MAKE) -f character/CMakeFiles/lib_charac.dir/build.make character/CMakeFiles/lib_charac.dir/Bomb.cpp.o
+	cd /home/harry/Documents/indie && $(MAKE) -f character/CMakeFiles/lib_charac.dir/build.make character/CMakeFiles/lib_charac.dir/Bomb.cpp.o
 .PHONY : Bomb.cpp.o
 
 Bomb.i: Bomb.cpp.i
@@ -140,7 +140,7 @@ Bomb.i: Bomb.cpp.i
 
 # target to preprocess a source file
 Bomb.cpp.i:
-	cd /home/harry/Documents/OOP_indie_studio_2019 && $(MAKE) -f character/CMakeFiles/lib_charac.dir/build.make character/CMakeFiles/lib_charac.dir/Bomb.cpp.i
+	cd /home/harry/Documents/indie && $(MAKE) -f character/CMakeFiles/lib_charac.dir/build.make character/CMakeFiles/lib_charac.dir/Bomb.cpp.i
 .PHONY : Bomb.cpp.i
 
 Bomb.s: Bomb.cpp.s
@@ -149,7 +149,7 @@ Bomb.s: Bomb.cpp.s
 
 # target to generate assembly for a file
 Bomb.cpp.s:
-	cd /home/harry/Documents/OOP_indie_studio_2019 && $(MAKE) -f character/CMakeFiles/lib_charac.dir/build.make character/CMakeFiles/lib_charac.dir/Bomb.cpp.s
+	cd /home/harry/Documents/indie && $(MAKE) -f character/CMakeFiles/lib_charac.dir/build.make character/CMakeFiles/lib_charac.dir/Bomb.cpp.s
 .PHONY : Bomb.cpp.s
 
 IA.o: IA.cpp.o
@@ -158,7 +158,7 @@ IA.o: IA.cpp.o
 
 # target to build an object file
 IA.cpp.o:
-	cd /home/harry/Documents/OOP_indie_studio_2019 && $(MAKE) -f character/CMakeFiles/lib_charac.dir/build.make character/CMakeFiles/lib_charac.dir/IA.cpp.o
+	cd /home/harry/Documents/indie && $(MAKE) -f character/CMakeFiles/lib_charac.dir/build.make character/CMakeFiles/lib_charac.dir/IA.cpp.o
 .PHONY : IA.cpp.o
 
 IA.i: IA.cpp.i
@@ -167,7 +167,7 @@ IA.i: IA.cpp.i
 
 # target to preprocess a source file
 IA.cpp.i:
-	cd /home/harry/Documents/OOP_indie_studio_2019 && $(MAKE) -f character/CMakeFiles/lib_charac.dir/build.make character/CMakeFiles/lib_charac.dir/IA.cpp.i
+	cd /home/harry/Documents/indie && $(MAKE) -f character/CMakeFiles/lib_charac.dir/build.make character/CMakeFiles/lib_charac.dir/IA.cpp.i
 .PHONY : IA.cpp.i
 
 IA.s: IA.cpp.s
@@ -176,7 +176,7 @@ IA.s: IA.cpp.s
 
 # target to generate assembly for a file
 IA.cpp.s:
-	cd /home/harry/Documents/OOP_indie_studio_2019 && $(MAKE) -f character/CMakeFiles/lib_charac.dir/build.make character/CMakeFiles/lib_charac.dir/IA.cpp.s
+	cd /home/harry/Documents/indie && $(MAKE) -f character/CMakeFiles/lib_charac.dir/build.make character/CMakeFiles/lib_charac.dir/IA.cpp.s
 .PHONY : IA.cpp.s
 
 Player.o: Player.cpp.o
@@ -185,7 +185,7 @@ Player.o: Player.cpp.o
 
 # target to build an object file
 Player.cpp.o:
-	cd /home/harry/Documents/OOP_indie_studio_2019 && $(MAKE) -f character/CMakeFiles/lib_charac.dir/build.make character/CMakeFiles/lib_charac.dir/Player.cpp.o
+	cd /home/harry/Documents/indie && $(MAKE) -f character/CMakeFiles/lib_charac.dir/build.make character/CMakeFiles/lib_charac.dir/Player.cpp.o
 .PHONY : Player.cpp.o
 
 Player.i: Player.cpp.i
@@ -194,7 +194,7 @@ Player.i: Player.cpp.i
 
 # target to preprocess a source file
 Player.cpp.i:
-	cd /home/harry/Documents/OOP_indie_studio_2019 && $(MAKE) -f character/CMakeFiles/lib_charac.dir/build.make character/CMakeFiles/lib_charac.dir/Player.cpp.i
+	cd /home/harry/Documents/indie && $(MAKE) -f character/CMakeFiles/lib_charac.dir/build.make character/CMakeFiles/lib_charac.dir/Player.cpp.i
 .PHONY : Player.cpp.i
 
 Player.s: Player.cpp.s
@@ -203,7 +203,7 @@ Player.s: Player.cpp.s
 
 # target to generate assembly for a file
 Player.cpp.s:
-	cd /home/harry/Documents/OOP_indie_studio_2019 && $(MAKE) -f character/CMakeFiles/lib_charac.dir/build.make character/CMakeFiles/lib_charac.dir/Player.cpp.s
+	cd /home/harry/Documents/indie && $(MAKE) -f character/CMakeFiles/lib_charac.dir/build.make character/CMakeFiles/lib_charac.dir/Player.cpp.s
 .PHONY : Player.cpp.s
 
 # Help Target
@@ -235,6 +235,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/harry/Documents/OOP_indie_studio_2019 && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/harry/Documents/indie && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

@@ -9,8 +9,11 @@ class WinPlayer : public IScene {
     public:
     WinPlayer(IrrlichtDevice *, std::stack<IScene *> *);
     ~WinPlayer();
+    void MusicWin();
 
     void init();
+    void initMenuButton();
+    void initRestartButton();
     void render(void);
      void updateMap(__attribute__((unused)) std::vector<std::vector<cell_t>> map) {
     };

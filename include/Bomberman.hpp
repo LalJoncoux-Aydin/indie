@@ -19,8 +19,8 @@
 #include "cell.hpp"
 #include "Intro.hpp"
 #include "Win.hpp"
-#include "Loose.hpp"
 #include "WinMulti.hpp"
+#include "Loose.hpp"
 
 #include "ICharacter.hpp"
 #include "Bomb.hpp"
@@ -36,7 +36,7 @@ class Bomberman {
 	void scenesHandler();
 	void clear();
     void endGame();
-
+    void manageEnd();
     void manageMenu();
     void initGame();
     void manageGame();

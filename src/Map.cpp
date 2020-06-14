@@ -190,7 +190,6 @@ std::vector<std::vector<cell_t>> Map::update(std::vector<std::shared_ptr<ICharac
     for (auto &character : characters) {
         if (character->isDead() == true)
             continue;
-        std::cout << "nb player " << counter << std::endl;
         auto pos = character->getPos();
         auto x = pos.x;
         auto y = pos.y;
