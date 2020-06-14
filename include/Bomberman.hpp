@@ -20,6 +20,7 @@
 #include "Intro.hpp"
 #include "Win.hpp"
 #include "Loose.hpp"
+#include "WinMulti.hpp"
 
 #include "ICharacter.hpp"
 #include "Bomb.hpp"

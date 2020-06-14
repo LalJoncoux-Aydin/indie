@@ -51,69 +51,82 @@ std::vector<int> Map::dropBomb(int xPos, int yPos, std::shared_ptr<Bomb> bomb)
 {
     std::vector<int> result;
     unsigned int bomb_rad = bomb->getExplosionRadius();
-    for (int i = 1; i != bomb_rad + 1 && xPos - i >= 0 && xPos + i <= 16 && yPos - i >= 0 && yPos + i <= 16; i++) {
-        if (_map[xPos - i][yPos].element == DESTRUCTIBLE_BOX) {
-            _map[xPos - i][yPos].element = BROKEN_BOX;
-            return result;
-        } else if (!(_map[xPos - i][yPos].element == WALL) && !(_map[xPos - i][yPos].element == INDESTRUCTIBLE_BOX) && _map[xPos - i][yPos].player == NO_PLAYER) {
-            _map[xPos - i][yPos].element = BURNING;
-        } else if (!(_map[xPos - i][yPos].player == NO_PLAYER)) {
-            if (_map[xPos - i][yPos].player == PLAYER1)
-                result.push_back(1);
-            if (_map[xPos - i][yPos].player == PLAYER2)
-                result.push_back(2);
-            if (_map[xPos - i][yPos].player == PLAYER3)
-                result.push_back(3);
-            if (_map[xPos - i][yPos].player == PLAYER4)
-                result.push_back(4);
+    bool top = true;
+    bool bot = true;
+    bool right = true;
+    bool left = true;
+    for (int i = 1; i != bomb_rad; i++) {
+        if (xPos - i > 0) {
+            if (_map[xPos - i][yPos].element == DESTRUCTIBLE_BOX && top == true) {
+                _map[xPos - i][yPos].element = BROKEN_BOX;
+            } else if (_map[xPos - i][yPos].element == WALL || _map[xPos - i][yPos].element == INDESTRUCTIBLE_BOX) {
+                top = false;
+            } else if (!(_map[xPos - i][yPos].element == WALL) && !(_map[xPos - i][yPos].element == INDESTRUCTIBLE_BOX) && _map[xPos - i][yPos].player == NO_PLAYER && top == true) {
+                _map[xPos - i][yPos].element = BURNING;
+            } else if (!(_map[xPos - i][yPos].player == NO_PLAYER) && top == true) {
+                if (_map[xPos - i][yPos].player == PLAYER1)
+                    result.push_back(1);
+                if (_map[xPos - i][yPos].player == PLAYER2)
+                    result.push_back(2);
+                if (_map[xPos - i][yPos].player == PLAYER3)
+                    result.push_back(3);
+                if (_map[xPos - i][yPos].player == PLAYER4)
+                    result.push_back(4);
+            }
         }
-
-        if (_map[xPos + i][yPos].element == DESTRUCTIBLE_BOX) {
-            _map[xPos + i][yPos].element = BROKEN_BOX;
-            return result;
-        } else if (!(_map[xPos + i][yPos].element == WALL) && !(_map[xPos + i][yPos].element == INDESTRUCTIBLE_BOX) && _map[xPos + i][yPos].player == NO_PLAYER) {
-            _map[xPos + i][yPos].element = BURNING;
-        } else if (!(_map[xPos + i][yPos].player == NO_PLAYER)) {
-            if (_map[xPos + i][yPos].player == PLAYER1)
-                result.push_back(1);
-            if (_map[xPos + i][yPos].player == PLAYER2)
-                result.push_back(2);
-            if (_map[xPos + i][yPos].player == PLAYER3)
-                result.push_back(3);
-            if (_map[xPos + i][yPos].player == PLAYER4)
-                result.push_back(4);
+        if (xPos + i <= 16) {
+            if (_map[xPos + i][yPos].element == DESTRUCTIBLE_BOX && bot == true) {
+                _map[xPos + i][yPos].element = BROKEN_BOX;
+            } else if (_map[xPos + i][yPos].element == WALL || _map[xPos + i][yPos].element == INDESTRUCTIBLE_BOX) {
+                bot = false;
+            }  else if (!(_map[xPos + i][yPos].element == WALL) && !(_map[xPos + i][yPos].element == INDESTRUCTIBLE_BOX) && _map[xPos + i][yPos].player == NO_PLAYER && bot == true) {
+                _map[xPos + i][yPos].element = BURNING;
+            } else if (!(_map[xPos + i][yPos].player == NO_PLAYER) && bot == true) {
+                if (_map[xPos + i][yPos].player == PLAYER1)
+                    result.push_back(1);
+                if (_map[xPos + i][yPos].player == PLAYER2)
+                    result.push_back(2);
+                if (_map[xPos + i][yPos].player == PLAYER3)
+                    result.push_back(3);
+                if (_map[xPos + i][yPos].player == PLAYER4)
+                    result.push_back(4);
+            }
         }
-
-        if (_map[xPos][yPos - i].element == DESTRUCTIBLE_BOX) {
-            _map[xPos][yPos - i].element = BROKEN_BOX;
-            return result;
-        } else if (!(_map[xPos][yPos - i].element == WALL) && !(_map[xPos][yPos - i].element == INDESTRUCTIBLE_BOX) && _map[xPos][yPos - i].player == NO_PLAYER) {
-            _map[xPos][yPos - i].element = BURNING;
-        } else if (!(_map[xPos][yPos - i].player == NO_PLAYER)) {
-            if (_map[xPos][yPos - i].player == PLAYER1)
-                result.push_back(1);
-            if (_map[xPos][yPos - i].player == PLAYER2)
-                result.push_back(2);
-            if (_map[xPos][yPos - i].player == PLAYER3)
-                result.push_back(3);
-            if (_map[xPos][yPos - i].player == PLAYER4)
-                result.push_back(4);
+        if (yPos - i >= 0) {
+            if (_map[xPos][yPos - i].element == DESTRUCTIBLE_BOX && right == true) {
+                _map[xPos][yPos - i].element = BROKEN_BOX;
+            } else if (_map[xPos][yPos - i].element == WALL || _map[xPos][yPos - i].element == INDESTRUCTIBLE_BOX) {
+                right = false;
+            } else if (!(_map[xPos][yPos - i].element == WALL) && !(_map[xPos][yPos - i].element == INDESTRUCTIBLE_BOX) && _map[xPos][yPos - i].player == NO_PLAYER && right == true) {
+                _map[xPos][yPos - i].element = BURNING;
+            } else if (!(_map[xPos][yPos - i].player == NO_PLAYER) && right == true) {
+                if (_map[xPos][yPos - i].player == PLAYER1)
+                    result.push_back(1);
+                if (_map[xPos][yPos - i].player == PLAYER2)
+                    result.push_back(2);
+                if (_map[xPos][yPos - i].player == PLAYER3)
+                    result.push_back(3);
+                if (_map[xPos][yPos - i].player == PLAYER4)
+                    result.push_back(4);
+            }
         }
-
-        if (_map[xPos][yPos + i].element == DESTRUCTIBLE_BOX) {
-            _map[xPos][yPos + i].element = BROKEN_BOX;
-            return result;
-        } else if (!(_map[xPos][yPos + i].element == WALL) && !(_map[xPos][yPos + i].element == INDESTRUCTIBLE_BOX) && _map[xPos][yPos + i].player == NO_PLAYER) {
-            _map[xPos][yPos + i].element = BURNING;
-        } else if (!(_map[xPos][yPos + i].player == NO_PLAYER)) {
-            if (_map[xPos][yPos + i].player == PLAYER1)
-                result.push_back(1);
-            if (_map[xPos][yPos + i].player == PLAYER2)
-                result.push_back(2);
-            if (_map[xPos][yPos + i].player == PLAYER3)
-                result.push_back(3);
-            if (_map[xPos][yPos + i].player == PLAYER4)
-                result.push_back(4);
+        if (yPos + i <= 16) {
+            if (_map[xPos][yPos + i].element == DESTRUCTIBLE_BOX && left == true) {
+                _map[xPos][yPos + i].element = BROKEN_BOX;
+            } else if (_map[xPos][yPos + i].element == WALL || _map[xPos][yPos + i].element == INDESTRUCTIBLE_BOX) {
+                left = false;
+            } else if (!(_map[xPos][yPos + i].element == WALL) && !(_map[xPos][yPos + i].element == INDESTRUCTIBLE_BOX) && _map[xPos][yPos + i].player == NO_PLAYER && left == true) {
+                _map[xPos][yPos + i].element = BURNING;
+            } else if (!(_map[xPos][yPos + i].player == NO_PLAYER) && left == true) {
+                if (_map[xPos][yPos + i].player == PLAYER1)
+                    result.push_back(1);
+                if (_map[xPos][yPos + i].player == PLAYER2)
+                    result.push_back(2);
+                if (_map[xPos][yPos + i].player == PLAYER3)
+                    result.push_back(3);
+                if (_map[xPos][yPos + i].player == PLAYER4)
+                    result.push_back(4);
+            }
         }
     }
     return result;
@@ -163,15 +176,21 @@ std::vector<std::vector<cell_t>> Map::update(std::vector<std::shared_ptr<ICharac
             if (_map[i][x].isDeadBody == true) {
                 _map[i][x].player = NO_PLAYER;
                 _map[i][x].isDeadBody = false;
+                _map[i][x].element = EMPTY;
             }
             if (_map[i][x].bombState == HAS_EXPLODED)
                 _map[i][x].bombState = NO;
+            if (_map[i][x].element == BOMB_PLACE)
+                _map[i][x].element = EMPTY;
         }
     }
 
     // FILL CHARACTER
     int counter = 0;
     for (auto &character : characters) {
+        if (character->isDead() == true)
+            continue;
+        std::cout << "nb player " << counter << std::endl;
         auto pos = character->getPos();
         auto x = pos.x;
         auto y = pos.y;
@@ -212,6 +231,7 @@ std::vector<std::vector<cell_t>> Map::update(std::vector<std::shared_ptr<ICharac
         if (bomb->isPlaced() == true) {
             auto posBomb = bomb->getPos();
             if (_map[posBomb.x][posBomb.y].bombState == NO) {
+                _map[posBomb.x][posBomb.y].element = BOMB_PLACE;
                 _map[posBomb.x][posBomb.y].bombState = EXPLOSION5;
                 bomb->setPlace(true);
             }
@@ -233,16 +253,16 @@ std::vector<std::vector<cell_t>> Map::update(std::vector<std::shared_ptr<ICharac
             } else if (_map[posBomb.x][posBomb.y].bombState == EXPLOSION1 && _diff > 500) {
                 _map[posBomb.x][posBomb.y].bombState = HAS_EXPLODED;
                 std::vector<int> player_dead = dropBomb(posBomb.x, posBomb.y, bomb);
+                bomb->setPlace(false);
                 if (!player_dead.empty()) {
-                    for (int a = 0; player_dead[a]; a++) {
+                    for (int a = 0; a < player_dead.size(); a++) {
                         if (player_dead[a] != 0) {
+                            Vector<unsigned int> dead_pos = characters[player_dead[a] - 1]->getPos();
                             characters[player_dead[a] - 1]->die();
-                            auto dead_pos = characters[player_dead[a] - 1]->getPos();
                             _map[dead_pos.x][dead_pos.y].isDeadBody = true;
                         }
                     }
                 }
-                bomb->setPlace(false);
             }
         }
         counter++;

@@ -10,6 +10,7 @@ set(
     Settings.cpp
     Game.cpp
     Win.cpp
+    WinMulti.cpp
     Loose.cpp
 )
 

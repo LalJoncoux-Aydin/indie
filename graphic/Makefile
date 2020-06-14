@@ -341,6 +341,33 @@ Win.cpp.s:
 	cd /home/harry/Documents/OOP_indie_studio_2019 && $(MAKE) -f graphic/CMakeFiles/lib_graph.dir/build.make graphic/CMakeFiles/lib_graph.dir/Win.cpp.s
 .PHONY : Win.cpp.s
 
+WinMulti.o: WinMulti.cpp.o
+
+.PHONY : WinMulti.o
+
+# target to build an object file
+WinMulti.cpp.o:
+	cd /home/harry/Documents/OOP_indie_studio_2019 && $(MAKE) -f graphic/CMakeFiles/lib_graph.dir/build.make graphic/CMakeFiles/lib_graph.dir/WinMulti.cpp.o
+.PHONY : WinMulti.cpp.o
+
+WinMulti.i: WinMulti.cpp.i
+
+.PHONY : WinMulti.i
+
+# target to preprocess a source file
+WinMulti.cpp.i:
+	cd /home/harry/Documents/OOP_indie_studio_2019 && $(MAKE) -f graphic/CMakeFiles/lib_graph.dir/build.make graphic/CMakeFiles/lib_graph.dir/WinMulti.cpp.i
+.PHONY : WinMulti.cpp.i
+
+WinMulti.s: WinMulti.cpp.s
+
+.PHONY : WinMulti.s
+
+# target to generate assembly for a file
+WinMulti.cpp.s:
+	cd /home/harry/Documents/OOP_indie_studio_2019 && $(MAKE) -f graphic/CMakeFiles/lib_graph.dir/build.make graphic/CMakeFiles/lib_graph.dir/WinMulti.cpp.s
+.PHONY : WinMulti.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -374,6 +401,9 @@ help:
 	@echo "... Win.o"
 	@echo "... Win.i"
 	@echo "... Win.s"
+	@echo "... WinMulti.o"
+	@echo "... WinMulti.i"
+	@echo "... WinMulti.s"
 .PHONY : help
 
 

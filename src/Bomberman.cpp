@@ -13,10 +13,21 @@ Bomberman::Bomberman()
 
 void Bomberman::endGame()
 {
-    std::cout << "END GAME !" << std::endl;
-    if (win_game == 1 || win_game == 2) {
-        Win *_win = new Win(_device, &_scenesStack);
+    //std::cout << "END GAME !" << std::endl;
+    if (win_game == 1) {
+       // std::cout << "je" << std::endl;
+        WinPlayer *_win = new WinPlayer(_device, &_scenesStack);
+        //std::cout << "suis" << std::endl;
         _scenesStack.push(_win);
+        //std::cout << "une" << std::endl;
+        _scenesStack.top()->init();
+        //std::cout << "pute" << std::endl;
+        _oldScene = _scenesStack.top();
+        //std::cout << "gentille" << std::endl;
+    }
+    /*if (win_game == 2) {
+        WinMulti *_winm = new WinMulti(_device, &_scenesStack);
+        _scenesStack.push(_winm);
         _scenesStack.top()->init();
         _oldScene = _scenesStack.top();
     } else if (win_game == 3) {
@@ -24,7 +35,7 @@ void Bomberman::endGame()
         _scenesStack.push(_loose);
         _scenesStack.top()->init();
         _oldScene = _scenesStack.top();
-    }
+    }*/
 }
 
 void Bomberman::initGame()
@@ -183,6 +194,10 @@ void Bomberman::scenesHandler()
 {
 	while (_device->run() && _scenesStack.top()->getDriver()) {
 
+        if (run_game == false && run_menu == true) {
+            endGame();
+        }
+
 		if (_oldScene != _scenesStack.top()) {
 		  _scenesStack.top()->init();
 		  _oldScene = _scenesStack.top();
@@ -193,9 +208,6 @@ void Bomberman::scenesHandler()
         } else {
             if (run_game == true)
                 manageGame();
-            if (run_game == false) {
-                endGame();
-            }
         }
 	    _scenesStack.top()->render();
 	}
@@ -244,6 +256,7 @@ void Bomberman::dumpJson(std::string file_name)
 
 Bomberman::~Bomberman()
 {
-    dumpJson("save.json");
+ //   std::cout << "hello" << std::endl;
+  //  dumpJson("save.json");
   //  readJson("save.json");
 }

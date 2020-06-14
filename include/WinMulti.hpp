@@ -1,14 +1,14 @@
-#ifndef WIN_HPP_
-#define WIN_HPP_
+#ifndef WINMULTI_HPP_
+#define WINMULTI_HPP_
 
 #include "IScene.hpp"
 #include "EventReceiver.hpp"
 #include "GameMusic.hpp"
 
-class WinPlayer : public IScene {
+class WinMulti : public IScene {
     public:
-    WinPlayer(IrrlichtDevice *, std::stack<IScene *> *);
-    ~WinPlayer();
+    WinMulti(IrrlichtDevice *, std::stack<IScene *> *);
+    ~WinMulti();
 
     void init();
     void render(void);

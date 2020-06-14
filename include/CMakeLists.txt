@@ -25,6 +25,7 @@ set(
     Vector.hpp
     Game.hpp
     Win.hpp
+    WinMulti.hpp
     Loose.hpp
     SaveLoad.hpp
 )
